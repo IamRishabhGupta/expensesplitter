@@ -1,12 +1,14 @@
 package com.example.expensesplitter.activity
 
 import android.app.Dialog
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log.e
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.example.expensesplitter.Constants.commonUtils
 import com.example.expensesplitter.R
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -16,6 +18,8 @@ open class BaseActivity : AppCompatActivity() {
     private var doubleBackToExitPressedOnce=false
 
     private lateinit var mProgressDialog:Dialog
+
+    private lateinit  var loadingDialog : Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,5 +59,16 @@ open class BaseActivity : AppCompatActivity() {
             R.color.snackbar_background_color
         ))
         snackBar.show()
+    }
+    fun showLoading(context: Context){
+        loadingDialog = commonUtils.showLoadingDialog(context)
+    }
+
+    fun hideLoading(){
+        loadingDialog?.let {
+            if(it.isShowing){
+                it.cancel()
+            }
+        }
     }
 }

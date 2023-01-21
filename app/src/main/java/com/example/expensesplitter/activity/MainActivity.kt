@@ -5,7 +5,6 @@ import android.os.Bundle
 import com.example.expensesplitter.Constants.Constants
 import com.example.expensesplitter.Firebase.FirestoreClass
 import com.example.expensesplitter.R
-import com.example.expensesplitter.activity.BaseActivity
 import com.example.expensesplitter.databinding.ActivityMainBinding
 import com.example.expensesplitter.fragments.AddFragment
 import com.example.expensesplitter.fragments.HomeFragment
@@ -29,12 +28,10 @@ class MainActivity : BaseActivity() {
             startActivity(Intent(this,splitActivity::class.java))
         }
 
-
         var home = HomeFragment()
         home.arguments = bundle
         val add = AddFragment()
         add.arguments = bundle
-
 
 
         var man = supportFragmentManager

@@ -4,16 +4,17 @@
     android:layout_height="wrap_content"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
+    android:background="@color/black"
     android:orientation="vertical">
 
 
 <LinearLayout
+    android:id="@+id/ll_addfrnd_first"
     android:layout_width="match_parent"
 android:layout_height="wrap_content"
 android:paddingLeft="16dp"
 android:paddingRight="16dp"
 android:orientation="vertical"
-    android:visibility="gone"
     android:gravity="center">
 
     <LinearLayout
@@ -25,12 +26,6 @@ android:orientation="vertical"
         android:visibility="visible"
         android:gravity="center_horizontal">
 
-
-<!--        <ImageView-->
-<!--            android:layout_width="45dp"-->
-<!--            android:layout_height="48dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:src="@drawable/ic_add_24" />-->
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/newFriendBtn"
@@ -49,6 +44,7 @@ android:orientation="vertical"
 </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/ll_addfrnd_second"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="16dp"
@@ -93,8 +89,6 @@ android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/friend_recycleview_item"/>
-
-
 
 </LinearLayout>
 

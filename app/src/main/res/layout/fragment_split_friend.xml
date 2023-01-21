@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:orientation="vertical">
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:paddingLeft="16dp"
+android:paddingRight="16dp"
+android:orientation="vertical"
+    android:visibility="gone"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:gravity="center_horizontal">
+
+
+<!--        <ImageView-->
+<!--            android:layout_width="45dp"-->
+<!--            android:layout_height="48dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:src="@drawable/ic_add_24" />-->
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/newFriendBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/shape_rounded_btn"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:text="Add Friend"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Enter Friend's Email"
+            android:textSize="22dp"
+            android:textColor="@color/white"
+            />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/newFriendEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_newFriendEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="Add Friend"
+            android:textColor="@color/white"
+            android:foreground="?attr/selectableItemBackground"
+            android:background="@drawable/shape_rounded_btn"
+            />
+
+</LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/friendRecyclerView"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/friend_recycleview_item"/>
+
+
+
+</LinearLayout>
+

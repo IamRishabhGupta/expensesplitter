@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/homeFragment"
-        android:title="@string/home"
-        android:icon = "@drawable/ic_home_24"/>
+        android:id="@+id/addFriend"
+        android:title="@string/addFriend"
+        android:icon = "@drawable/ic_baseline_add_24"/>
 
     <item
-        android:id="@+id/addFragment"
-        android:title="@string/New"
-        android:icon = "@drawable/ic_add_24"/>
+        android:id="@+id/addGroup"
+        android:title="@string/addGroup"
+        android:icon = "@drawable/ic_baseline_group_add_24"/>
 
-    <item
-        android:id="@+id/statsFragment"
-        android:title="@string/stats"
-        android:icon = "@drawable/ic_chart_24"/>
+
 </menu>

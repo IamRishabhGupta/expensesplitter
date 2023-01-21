@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.expensesplitter.Adapter.FriendsListAdapter
 import com.example.expensesplitter.Firebase.FirestoreClass
 import com.example.expensesplitter.R
 import com.example.expensesplitter.models.Expense
@@ -18,6 +19,7 @@ class TransitionHistoryActivity : BaseActivity(){
 
     var exp : ArrayList<Expense> = ArrayList()
     var adapterExpList : ArrayList<Expense> = ArrayList()
+    var NameOfFriends : ArrayList<String> = ArrayList()
     var adapter : ExpenseListAdapter ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,9 +31,6 @@ class TransitionHistoryActivity : BaseActivity(){
             rv.visibility = View.VISIBLE
             findViewById<LinearLayout>(R.id.friends).visibility = View.GONE
         }
-
-
-
 
         FirestoreClass().getExpense(this)
 
@@ -129,9 +128,12 @@ class TransitionHistoryActivity : BaseActivity(){
     }
 
     fun getFriendsName(friendsName : ArrayList<String>){
-        for(i in friendsName){
-            e("ye rahe naam",i.toString())
-        }
+        NameOfFriends = friendsName
+
+        var adapter = FriendsListAdapter(NameOfFriends)
+        val namerv = findViewById<RecyclerView>(R.id.rv_friendsSplitMoney)
+        namerv.adapter = adapter
+        namerv.layoutManager = LinearLayoutManager(this)
     }
 
 

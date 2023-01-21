@@ -1,7 +1,8 @@
-package com.example.expensesplitter
+package com.example.expensesplitter.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.expensesplitter.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -8,7 +8,6 @@ import android.util.Log.e
 import android.view.WindowManager
 import com.example.expensesplitter.Firebase.FirestoreClass
 import com.example.expensesplitter.R
-import com.example.pocketmanager.activity.MainActivity
 
 class splash_activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.example.pocketmanager.activity
+package com.example.expensesplitter.activity
 
 import android.os.Bundle
 import com.example.expensesplitter.Constants.Constants

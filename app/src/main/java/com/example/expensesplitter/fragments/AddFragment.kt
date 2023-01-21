@@ -10,10 +10,10 @@ import android.widget.AdapterView
 import android.widget.Toast
 import com.example.expensesplitter.Constants.Constants
 import com.example.expensesplitter.Firebase.FirestoreClass
+import com.example.expensesplitter.activity.MainActivity
 import com.example.expensesplitter.databinding.FragmentAddBinding
 import com.example.expensesplitter.fragments.BaseFragment
 import com.example.expensesplitter.models.Expense
-import com.example.pocketmanager.activity.MainActivity
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap

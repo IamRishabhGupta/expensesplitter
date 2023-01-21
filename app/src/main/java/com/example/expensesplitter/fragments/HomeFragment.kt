@@ -12,7 +12,7 @@ import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import com.example.expensesplitter.Constants.Constants
 import com.example.expensesplitter.R
-import com.example.expensesplitter.activity.TransactionHistoryActivity
+import com.example.expensesplitter.activity.TransitionHistoryActivity
 import com.example.expensesplitter.databinding.FragmentHomeBinding
 import com.example.expensesplitter.models.Expense
 
@@ -34,7 +34,7 @@ class HomeFragment : Fragment() {
         e("Home Fragment" , expensesList.toString())
 
         binding?.cvHistory?.setOnClickListener {
-            var intent = Intent(requireContext(), TransactionHistoryActivity::class.java)
+            var intent = Intent(requireContext(), TransitionHistoryActivity::class.java)
             startActivity(intent)
         }
 

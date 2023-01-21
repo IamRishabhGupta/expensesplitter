@@ -41,12 +41,12 @@
             android:screenOrientation="fullSensor"
             android:theme="@style/Theme.Design.NoActionBar" />
         <activity
-            android:name=".activity.TransactionHistoryActivity"
+            android:name=".activity.TransitionHistoryActivity"
             android:exported="false"
             android:screenOrientation="fullSensor"
             android:theme="@style/Theme.Design.NoActionBar" />
         <activity
-            android:name="com.example.pocketmanager.activity.MainActivity"
+            android:name=".activity.MainActivity"
             android:screenOrientation="fullSensor"
             android:exported="true">
             <intent-filter>

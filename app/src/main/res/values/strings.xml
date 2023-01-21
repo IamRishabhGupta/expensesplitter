@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">Expense-Splitter</string>
     <string name="home">Home</string>
-    <string name="New">New</string>
+    <string name="addFriend">Add Friend</string>
+    <string name="addGroup">Add Group</string>
+    <string name="emailText">Enter Email of New Friend </string>
     <string name="stats">Stats</string>
+    <string name="New">New</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="tags">

@@ -6,9 +6,9 @@ import com.example.expensesplitter.Firebase.FirestoreClass
 import com.example.expensesplitter.R
 import com.example.expensesplitter.activity.BaseActivity
 import com.example.expensesplitter.databinding.ActivityMainBinding
-import com.example.expensesplitter.fragments.HomeFragment
 import com.example.expensesplitter.models.Expense
 import com.example.pocketmanager.fragments.AddFragment
+import com.example.pocketmanager.fragments.HomeFragment
 
 
 class MainActivity : BaseActivity() {

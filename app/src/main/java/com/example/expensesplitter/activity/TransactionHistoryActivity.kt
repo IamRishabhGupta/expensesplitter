@@ -97,6 +97,8 @@ class TransitionHistoryActivity : BaseActivity(){
 
             }
         )
+
+        FirestoreClass().getFriends(this)
     }
 
     fun getExpenseListData(expenseList : ArrayList<Expense>){
@@ -124,6 +126,12 @@ class TransitionHistoryActivity : BaseActivity(){
 
         rv.adapter = adapter
         rv.layoutManager = LinearLayoutManager(this)
+    }
+
+    fun getFriendsName(friendsName : ArrayList<String>){
+        for(i in friendsName){
+            e("ye rahe naam",i.toString())
+        }
     }
 
 

@@ -7,25 +7,24 @@ data class user (
     val id:String="",
     val name:String="",
     val email:String="",
-    val friends:ArrayList<user> = ArrayList()
+    val friends:ArrayList<String> = ArrayList()
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.createTypedArrayList(user.CREATOR)!!
-    ) {
-    }
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(id)
-        parcel.writeString(name)
-        parcel.writeString(email)
-        parcel.writeTypedList(friends)
-    }
+        parcel.createStringArrayList()!!
+    )
 
     override fun describeContents(): Int {
         return 0
+    }
+
+    override fun writeToParcel(dest: Parcel?, flags: Int) {
+        dest?.writeString(id)
+        dest?.writeString(name)
+        dest?.writeString(email)
+        dest?.writeStringList(friends)
     }
 
     companion object CREATOR : Parcelable.Creator<user> {
@@ -37,4 +36,5 @@ data class user (
             return arrayOfNulls(size)
         }
     }
+
 }

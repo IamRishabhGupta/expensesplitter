@@ -1,5 +1,6 @@
 package com.example.expensesplitter.Firebase
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.util.Log
 import android.util.Log.e
@@ -14,6 +15,7 @@ import com.example.expensesplitter.models.user
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.auth.User
 
 class FirestoreClass {
     private val mFireStore = FirebaseFirestore.getInstance()
@@ -109,31 +111,28 @@ class FirestoreClass {
             .addOnSuccessListener { document ->
                 var uid: String = ""
                 e("friend", document.documents.toString())
-                var friendList: ArrayList<user> = ArrayList()
+                var friendList: ArrayList<String> = ArrayList()
                 for (i in document) {
                     val friend = i.toObject(user::class.java)
+                    e("friend", friend.toString())
                     uid = friend.id
                 }
                 val friendHashMap = HashMap<String, Any>()
                 mFireStore.collection(Constants.USERS)
                     .document(getCurrentUserId()).get().addOnSuccessListener {
                         if (it.data?.isNotEmpty() == true) {
-                            for (i in it.get(Constants.FRIENDS) as ArrayList<user>) {
-                                e("val:", i.toString())
-                                friendList.add(i)
-                            }
-                            mFireStore.collection(Constants.USERS).document(uid).get().addOnSuccessListener{doc->
-                                var cur_user:user = user(doc.get("id") as String,
-                                    doc.get("name") as String, doc.get("email") as String, doc.get("friends") as ArrayList<user>
-                                )
-                                friendList.add(cur_user)
-                            }
-                        }
+                            for (i in it.data!!.get("friends") as ArrayList<String>) {
 
+                                    friendList.add(i)
+
+                            }
+                            friendList.add(uid)
+                        }
+                        e("3" , "ho gaya")
                         friendHashMap[Constants.FRIENDS] = friendList
                         mFireStore.collection(Constants.USERS).document(getCurrentUserId())
                             .update(friendHashMap).addOnSuccessListener {
-
+                                e("4","ho gaya")
                         }.addOnFailureListener {
                             Log.e("friend error :", "error while friends")
                         }
@@ -146,17 +145,40 @@ class FirestoreClass {
         }
     }
 
+    @SuppressLint("RestrictedApi")
+    fun getFriends(activity: Activity){
+        var friend = ArrayList<String>()
+        var friendName = ArrayList<String>()
+        mFireStore.collection(Constants.USERS)
+            .document(getCurrentUserId()).get().addOnSuccessListener {
+                if (it.data?.isNotEmpty() == true) {
+                    for (i in it.data!!.get("friends") as ArrayList<String>) {
+                        friend.add(i)
+                    }
+                    }
 
-    fun getUserFromId(id:String){
+                mFireStore.collection(Constants.USERS).get().addOnSuccessListener {
+                    for (i in it.documents){
+//                        e("1 ---",i.data?.get("name").toString())
+                        for(idf in friend){
+//                            e("2 --- " , idf)
+                            if(i.data?.get("id").toString() == idf){
+                                e("ye gazab hai",i.data?.get("name").toString())
+                                friendName.add(i.data?.get("name").toString())
+                            }
+                        }
+                    }
+                }
+                when(activity){
+                    is TransitionHistoryActivity ->{
+                        activity.getFriendsName(friendName)
+                    }
+                }
+                }.addOnFailureListener {
 
-        mFireStore.collection(Constants.USERS).document(id).get().addOnSuccessListener { doc->
-            var cur_user:user = user(doc.get("id") as String,
-                doc.get("name") as String, doc.get("email") as String, doc.get("friends") as ArrayList<user>
-            )
-            e("user",cur_user.toString())
-        }.addOnFailureListener {
-            Log.e("user error", "Error while getting a user")
-        }
+            }
     }
+
+
 }
 

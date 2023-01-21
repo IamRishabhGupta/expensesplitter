@@ -1,4 +1,4 @@
-package com.example.pocketmanager.fragments
+package com.example.expensesplitter.fragments
 
 import android.app.DatePickerDialog
 import android.os.Bundle

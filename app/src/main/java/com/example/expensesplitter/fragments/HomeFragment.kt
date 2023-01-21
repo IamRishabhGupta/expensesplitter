@@ -1,4 +1,4 @@
-package com.example.pocketmanager.fragments
+package com.example.expensesplitter.fragments
 
 import android.content.Context
 import android.content.Intent

@@ -37,6 +37,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-database:19.2.1'
+    implementation 'com.google.firebase:firebase-database-ktx:20.1.0'
     def lottieVersion = "3.4.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
     implementation 'com.google.firebase:firebase-storage:20.1.0'

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pocket Manager</string>
+    <string name="app_name">Expense-Splitter</string>
     <string name="home">Home</string>
     <string name="New">New</string>
     <string name="stats">Stats</string>

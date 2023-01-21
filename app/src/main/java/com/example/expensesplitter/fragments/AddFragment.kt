@@ -1,9 +1,8 @@
-package com.example.expensesplitter.fragments
+package com.example.pocketmanager.fragments
 
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,14 +10,16 @@ import android.widget.AdapterView
 import android.widget.Toast
 import com.example.expensesplitter.Constants.Constants
 import com.example.expensesplitter.Firebase.FirestoreClass
-import com.example.expensesplitter.activity.MainActivity
 import com.example.expensesplitter.databinding.FragmentAddBinding
+import com.example.expensesplitter.fragments.BaseFragment
 import com.example.expensesplitter.models.Expense
+import com.example.pocketmanager.activity.MainActivity
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
-class AddFragment : Fragment() {
+
+class AddFragment : BaseFragment() {
 
     var binding : FragmentAddBinding?= null
     var expensesList : ArrayList<Expense> = ArrayList()
@@ -32,12 +33,11 @@ class AddFragment : Fragment() {
 
         setCalendar()
 
-       expensesList=  FirestoreClass().getExpense()
-
+        expensesList = arguments?.getParcelableArrayList(Constants.EXP_LIST)!!
 
 
         var tag : String = ""
-        binding?.spAddFrag?.onItemSelectedListener=object:AdapterView.OnItemSelectedListener{
+        binding?.spAddFrag?.onItemSelectedListener=object: AdapterView.OnItemSelectedListener{
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
@@ -109,20 +109,21 @@ class AddFragment : Fragment() {
 
         val expense = Expense(title,amt,desc,tag,date,extra)
 
-        (activity as MainActivity).showProgressDialog("Adding Expense")
+        showProgressDialog(requireContext(),"Adding Expense")
 
         var expenseHashMap = HashMap<String , Any>()
 
         expensesList.add(expense)
         expenseHashMap[Constants.EXP_LIST] = expensesList
 
-        FirestoreClass().addOrUpdateExpense(activity as MainActivity ,this,expenseHashMap)
+        FirestoreClass().addOrUpdateExpense(activity as MainActivity,this,expenseHashMap)
     }
 
 
     fun expAddedSuccessfully() {
         Log.e("fragment", activity.toString())
-        (activity as MainActivity).hideProgressDialog()
+        FirestoreClass().getExpense(activity as MainActivity)
+        hideProgressDialog()
         binding?.etAddFragTitle?.setText("")
         setCalendar()
         binding?.checkBox?.isChecked = false

@@ -8,6 +8,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import com.example.expensesplitter.databinding.ActivitySignInBinding
 import com.example.expensesplitter.models.user
+import com.example.pocketmanager.activity.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class SignIn : BaseActivity() {
@@ -41,7 +42,7 @@ class SignIn : BaseActivity() {
                         hideProgressDialog()
                         if (task.isSuccessful) {
 //                            FirestoreClass().loadUserdata(this)
-                            startActivity(Intent(this,MainActivity::class.java))
+                            startActivity(Intent(this, MainActivity::class.java))
                         } else {
                             Log.w("Sign in", "createUserWithEmail:failure", task.exception)
                             Toast.makeText(baseContext, "Authentication failed.",

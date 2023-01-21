@@ -1,13 +1,14 @@
 package com.example.expensesplitter.Firebase
 
+import android.app.Activity
 import android.util.Log
 import android.util.Log.e
 import com.example.expensesplitter.Constants.Constants
-import com.example.expensesplitter.activity.MainActivity
 import com.example.expensesplitter.activity.SignUp
-import com.example.expensesplitter.fragments.AddFragment
 import com.example.expensesplitter.models.Expense
 import com.example.expensesplitter.models.user
+import com.example.pocketmanager.activity.MainActivity
+import com.example.pocketmanager.fragments.AddFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
@@ -54,7 +55,7 @@ class FirestoreClass {
             }
     }
 
-    fun getExpense():ArrayList<Expense>{
+    fun getExpense(activity: Activity){
         var expenseList:ArrayList<Expense> = ArrayList()
         mFireStore.collection(Constants.EXPENSE)
             .document(getCurrentUserId()).
@@ -70,13 +71,31 @@ class FirestoreClass {
                         )
                         expenseList.add(expense)
                     }
+
+
                     e("result",expenseList.toString())
 
+                    when(activity){
+                        is MainActivity -> {
+                            activity.getExpenseData(expenseList)
+                        }
+//                        is TransitionHistoryActivity -> {
+//                            activity.getExpenseListData(expenseList)
+//                        }
+                    }
+
                 }else{
+                    when(activity){
+                        is MainActivity -> {
+                            activity.getExpenseData(expenseList)
+                        }
+//                        is TransitionHistoryActivity -> {
+//                            activity.getExpenseListData(expenseList)
+//                        }
+                    }
                     e("No result" , "No result")
                 }
             }
-        return expenseList
     }
 
 }

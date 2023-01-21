@@ -1,14 +1,271 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.HomeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black"
+    tools:context=".fragments.HomeFragment"
+    android:orientation="vertical"
+    android:padding="8dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="220dp"
+        app:cardCornerRadius="10dp"
+        android:layout_margin="10dp"
+        >
+        <LinearLayout
+            android:weightSum="1"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient2"
+            >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.1"
+                />
+            <TextView
+                android:text="YOU'VE SPENT "
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.25"
+                android:textColor="@color/secondary_text"
+                android:textSize="26dp"
+                />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.4"
+                android:weightSum="1"
+                >
+                <TextView
+                    android:text="₹ "
+                    android:textStyle="bold"
+                    android:gravity="right"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.35"
+                    android:textColor="@color/white"
+                    android:textSize="42dp"
+                    />
+                <TextView
+                    android:text="0.0"
+                    android:id="@+id/tv_homeSum"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.65"
+                    android:textColor="@color/white"
+                    android:textSize="42dp"
+                    />
+            </LinearLayout>
+            <TextView
+                android:text="THIS MONTH TILL NOW "
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.25"
+                android:textColor="@color/secondary_text"
+                android:textSize="26dp"
+                />
+        </LinearLayout>
 
-</FrameLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_dining"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/Div_Height"
+        android:layout_margin="10dp"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="@color/black"
+        app:cardCornerRadius="10dp">
+        <LinearLayout
+            android:weightSum="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/box_dine"
+            android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
+                android:layout_height="@dimen/Div_Height"
+                android:padding="2dp"
+                android:src="@drawable/ic_dining_24"/>
+            <TextView
+                android:id="@+id/tv_amtDining"
+                android:layout_width="0dp"
+                android:layout_weight="0.4"
+                android:layout_height="match_parent"
+                android:text="Money Here"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="20dp"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.4"
+                android:layout_height="match_parent"
+                android:text="IN DINING"
+                android:textColor="@color/secondary_text"
+                android:gravity="center"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_LifeStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/Div_Height"
+        android:layout_margin="10dp"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="@color/black"
+        app:cardCornerRadius="10dp">
+        <LinearLayout
+            android:weightSum="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/box_lifestyle"
+            android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
+                android:layout_height="@dimen/Div_Height"
+                android:padding="2dp"
+                android:src="@drawable/ic_baseline_emoji_nature_24"/>
+            <TextView
+                android:id="@+id/tv_amtLifeStyle"
+                android:layout_width="0dp"
+                android:layout_weight="0.4"
+                android:layout_height="match_parent"
+                android:text="Money Here"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="20dp"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.4"
+                android:layout_height="match_parent"
+                android:text="IN LIFESTYLE"
+                android:textColor="@color/secondary_text"
+                android:gravity="center"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_bills"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/Div_Height"
+        android:layout_margin="10dp"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="@color/black"
+        app:cardCornerRadius="10dp">
+        <LinearLayout
+            android:weightSum="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/box_bills"
+            android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
+                android:layout_height="@dimen/Div_Height"
+                android:padding="2dp"
+                android:src="@drawable/ic_baseline_attach_money_24"/>
+            <TextView
+                android:id="@+id/tv_amtBills"
+                android:layout_width="0dp"
+                android:layout_weight="0.4"
+                android:layout_height="match_parent"
+                android:text="Money Here"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="20dp"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.4"
+                android:layout_height="match_parent"
+                android:text="IN BILLS"
+                android:textColor="@color/secondary_text"
+                android:gravity="center"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_Others"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/Div_Height"
+        android:layout_margin="10dp"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="@color/black"
+        app:cardCornerRadius="10dp">
+        <LinearLayout
+            android:weightSum="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/box_others"
+            android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
+                android:layout_height="@dimen/Div_Height"
+                android:padding="2dp"
+                android:src="@drawable/ic_baseline_panorama_fish_eye_24"/>
+            <TextView
+                android:id="@+id/tv_amtOthers"
+                android:layout_width="0dp"
+                android:layout_weight="0.4"
+                android:layout_height="match_parent"
+                android:text="Money Here"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="20dp"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.4"
+                android:layout_height="match_parent"
+                android:text="IN OTHERS"
+                android:textColor="@color/secondary_text"
+                android:gravity="center"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_history"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="8dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Transaction History"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/gradient"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+</LinearLayout>

@@ -5,6 +5,7 @@ class Constants {
         const val USERS:String="users"
         const val EXPENSE : String = "expense"
         const val EXP_LIST : String =  "expList"
+        const val EMAIL:String="email"
+        const val FRIENDS:String="friends"
     }
-
 }

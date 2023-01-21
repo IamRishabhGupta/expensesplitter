@@ -7,17 +7,13 @@ data class user (
     val id:String="",
     val name:String="",
     val email:String="",
-    val image:String="",
-    val mobile:Long=0,
-    val fcmToken:String=""
+    val friends:ArrayList<user> = ArrayList()
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.readString()!!,
-        parcel.readLong(),
-        parcel.readString()!!
+        parcel.createTypedArrayList(user.CREATOR)!!
     ) {
     }
 
@@ -25,9 +21,7 @@ data class user (
         parcel.writeString(id)
         parcel.writeString(name)
         parcel.writeString(email)
-        parcel.writeString(image)
-        parcel.writeLong(mobile)
-        parcel.writeString(fcmToken)
+        parcel.writeTypedList(friends)
     }
 
     override fun describeContents(): Int {

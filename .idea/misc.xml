@@ -5,7 +5,11 @@
       <map>
         <entry key="..\:/Users/pranj/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/pranj/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/activity_split.xml" value="0.2" />
+        <entry key="..\:/Users/pranj/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/fragment_add.xml" value="0.1" />
         <entry key="..\:/Users/pranj/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/fragment_home.xml" value="0.11096014492753623" />
+        <entry key="..\:/Users/pranj/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/fragment_split_friend.xml" value="0.2" />
+        <entry key="..\:/Users/pranj/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/fragment_split_group.xml" value="0.2" />
+        <entry key="..\:/Users/pranj/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/friend_recycleview_item.xml" value="0.2" />
         <entry key="..\:/Users/pranj/AndroidStudioProjects/expensesplitter/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2" />
         <entry key="..\:/Users/pranj/AndroidStudioProjects/expensesplitter/app/src/main/res/menu/bottom_nav_menu_split.xml" value="0.2" />
       </map>

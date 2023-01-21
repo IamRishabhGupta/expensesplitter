@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".fragments.AddFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <TextView
+            android:id="@+id/tv_addFrag_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Expense"
+            android:textSize="36dp"
+            android:gravity="center"
+            android:textColor="@android:color/holo_purple"
+            />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="55dp"
+            android:id="@+id/til_addFrag_Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            >
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_addFrag_Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/secondary_black"
+                android:hint="expense title"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/til_addFrag_expense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            >
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_addFrag_expense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:inputType="numberDecimal"
+                android:backgroundTint="@color/secondary_black"
+                android:hint="expense amount"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/til_addFrag_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            >
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_addFrag_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/secondary_black"
+                android:inputType="textImeMultiLine"
+                android:hint="description"
+                android:overScrollMode="always"
+                android:scrollHorizontally="false"
+                android:lines="3"
+                android:scrollbars="vertical"
+                android:scrollbarStyle="insideInset"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Spinner
+                android:id="@+id/sp_addFrag"
+                android:layout_width="120dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="25dp"
+                android:background="@drawable/box_rounded_stroked"
+                android:entries="@array/tags" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="10dp"
+                android:id="@+id/til_addFrag_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="20dp"
+                >
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_addFrag_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/secondary_black"
+                    android:focusable="false"
+                    android:hint="date"
+                    android:focusableInTouchMode="false"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            >
+            <TextView
+                android:id="@+id/addFrag_rb_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EXPENSE OUT OF BUDGET?"
+                android:textColor="@color/TextView_Color"
+                android:textSize="19sp"
+                />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                />
+
+        </LinearLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/addBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:text="ADD"
+            android:textColor="@color/white"
+            android:foreground="?attr/selectableItemBackground"
+            android:background="@drawable/shape_rounded_btn"
+            />
+    </LinearLayout>
+</FrameLayout>

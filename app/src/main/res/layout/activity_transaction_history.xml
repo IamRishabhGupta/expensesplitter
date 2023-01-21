@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/black"
-    tools:context=".activity.TransactionHistoryActivity">
+    tools:context=".activity.TransitionHistoryActivity">
 
     <LinearLayout
         android:orientation="horizontal"

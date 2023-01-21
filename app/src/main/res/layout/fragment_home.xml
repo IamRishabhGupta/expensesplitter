@@ -10,7 +10,6 @@
     android:padding="8dp">
 
     <androidx.cardview.widget.CardView
-        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="220dp"
         app:cardCornerRadius="10dp"
@@ -45,7 +44,7 @@
                 android:weightSum="1"
                 >
                 <TextView
-                    android:text="₹ "
+                    android:text="₹"
                     android:textStyle="bold"
                     android:gravity="right"
                     android:layout_width="0dp"

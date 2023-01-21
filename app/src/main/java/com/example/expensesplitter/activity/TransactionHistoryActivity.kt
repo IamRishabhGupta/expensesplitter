@@ -3,11 +3,13 @@ package com.example.expensesplitter.activity
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log.e
+import android.view.View
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.expensesplitter.Firebase.FirestoreClass
 import com.example.expensesplitter.R
-import com.example.expensesplitter.activity.BaseActivity
 import com.example.expensesplitter.models.Expense
 import com.example.pocketmanager.Adapter.ExpenseListAdapter
 import com.google.android.material.tabs.TabLayout
@@ -21,6 +23,15 @@ class TransitionHistoryActivity : BaseActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_transaction_history)
+
+        findViewById<TextView>(R.id.splitCancelBtn).setOnClickListener {
+            val rv = findViewById<RecyclerView>(R.id.rv_trans_history)
+            rv.visibility = View.VISIBLE
+            findViewById<LinearLayout>(R.id.friends).visibility = View.GONE
+        }
+
+
+
 
         FirestoreClass().getExpense(this)
 
@@ -95,11 +106,21 @@ class TransitionHistoryActivity : BaseActivity(){
         setExpenseListAdapter(exp)
     }
 
+
     fun setExpenseListAdapter(exp : ArrayList<Expense>){
 
         val rv = findViewById<RecyclerView>(R.id.rv_trans_history)
         adapter = ExpenseListAdapter(exp)
         e("rv laouuo4" , exp.toString())
+
+        adapter?.setOnClickListener(object  : ExpenseListAdapter.OnClickListener{
+            override fun onClick(position: Int, expense: Expense) {
+                val rv = findViewById<RecyclerView>(R.id.rv_trans_history)
+                rv.visibility = View.GONE
+                findViewById<LinearLayout>(R.id.friends).visibility = View.VISIBLE
+            }
+
+        })
 
         rv.adapter = adapter
         rv.layoutManager = LinearLayoutManager(this)

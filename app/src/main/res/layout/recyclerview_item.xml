@@ -63,7 +63,7 @@
             android:layout_weight="0.8"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:src="@drawable/googleg_standard_color_18"
+            android:src="@drawable/stale_mark_removebg"
             android:visibility="visible"
             />
 

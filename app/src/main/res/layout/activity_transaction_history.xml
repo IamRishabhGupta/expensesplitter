@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/black"
-    tools:context=".activity.TransactionHistoryActivity">
+    tools:context=".activity.TransitionHistoryActivity">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -75,6 +75,88 @@
         android:id="@+id/rv_trans_history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp" />
+        android:layout_margin="10dp"
+        android:visibility="visible"/>
+
+    <LinearLayout
+        android:id="@+id/friends"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:paddingTop="5dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Split With Friends"
+                android:textSize="20sp"
+                android:padding="10dp"
+                android:gravity="center"
+                android:textColor="@color/purple_200"
+                android:layout_weight="0.8"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="₹amt"
+                android:textSize="20sp"
+                android:padding="10dp"
+                android:gravity="center"
+                android:textColor="@color/purple_200"
+                android:layout_weight="0.2"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_margin="10dp"
+            android:background="@color/purple_200"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/splitCancelBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Cancel"
+                android:textSize="20sp"
+                android:background="@drawable/gradient"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:layout_weight="0.4"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.05"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Split"
+                android:layout_margin="10dp"
+                android:textSize="20sp"
+                android:background="@drawable/gradient"
+                android:gravity="center"
+                android:layout_weight="0.4"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

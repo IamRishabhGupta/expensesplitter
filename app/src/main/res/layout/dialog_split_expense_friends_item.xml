@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@color/black">
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="0.6"
+        android:hint="UserName"
+        android:textSize="20sp"
+        android:textColor="@color/purple_200"
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="0dp"
+        android:layout_weight="0.2"
+        android:hint="0.0"
+        android:inputType="numberDecimal"
+        android:layout_height="wrap_content"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05"/>
+
+</LinearLayout>

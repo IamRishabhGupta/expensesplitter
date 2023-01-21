@@ -1,6 +1,7 @@
 package com.example.pocketmanager.Adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.expensesplitter.databinding.RecyclerviewItemBinding
@@ -19,6 +20,7 @@ open class ExpenseListAdapter(
                 val stale = binding.ivItemStale
         }
 
+        private var onClickListener : OnClickListener?= null
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemExpenseHolder {
                 return ItemExpenseHolder(
@@ -36,7 +38,28 @@ open class ExpenseListAdapter(
                 holder.desc.text = model.description
                 holder.amt.text = model.amount.toString()
 
+                if(model.extra){
+                        holder.stale.visibility = View.VISIBLE
+                }else{
+                        holder.stale.visibility = View.GONE
+                }
+
+                holder.itemView.setOnClickListener{
+                        if (onClickListener != null){
+                                onClickListener!!.onClick(position,model)
+                        }
+                }
         }
+
+
+        interface OnClickListener{
+                fun onClick(position: Int , expense : Expense)
+        }
+
+        fun setOnClickListener(onClickListener: OnClickListener){
+                this.onClickListener = onClickListener
+        }
+
 
         override fun getItemCount(): Int {
                 return list.size

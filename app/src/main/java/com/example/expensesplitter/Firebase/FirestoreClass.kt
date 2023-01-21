@@ -7,9 +7,9 @@ import com.example.expensesplitter.Constants.Constants
 import com.example.expensesplitter.activity.MainActivity
 import com.example.expensesplitter.activity.SignUp
 import com.example.expensesplitter.activity.TransitionHistoryActivity
+import com.example.expensesplitter.fragments.AddFragment
 import com.example.expensesplitter.models.Expense
 import com.example.expensesplitter.models.user
-import com.example.pocketmanager.fragments.AddFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions

@@ -1,9 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/black"
     tools:context=".activity.TransactionHistoryActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:background="@drawable/gradient"
+        android:layout_height="55dp">
+        <ImageView
+            android:layout_margin="10dp"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            android:contentDescription="Go Back" />
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_margin="10dp"
+            android:layout_weight="2"
+            android:layout_marginStart="20sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text="History"
+            android:textColor="@color/white"
+            />
+    </LinearLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tl_parent"
+        android:background="@drawable/gradient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/ti_ll"
+            android:tag="all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/ic_home_24"/>
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/ti_dining"
+            android:tag="Dining"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/ic_dining_24"/>
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/ti_lifestyle"
+            android:tag="Bills"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/ic_baseline_emoji_nature_24"/>
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/ti_ill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/ic_baseline_attach_money_24"/>
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/ti_misc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/ic_baseline_panorama_fish_eye_24"/>
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_trans_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp" />
+
+</LinearLayout>

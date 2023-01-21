@@ -4,6 +4,17 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/bottom_nav_selector.xml" value="0.109" />
+        <entry key="app/src/main/res/drawable/ic_add_24.xml" value="0.109" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.14114583333333333" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.3098958333333333" />
+      </map>
+    </option>
+  </component>
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/bottom_nav_selector.xml" value="0.109" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14114583333333333" />
       </map>
     </option>

@@ -1,60 +1,134 @@
 package com.example.expensesplitter.fragments
 
+import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.expensesplitter.R
+import android.widget.AdapterView
+import android.widget.Toast
+import com.example.expensesplitter.Constants.Constants
+import com.example.expensesplitter.Firebase.FirestoreClass
+import com.example.expensesplitter.activity.MainActivity
+import com.example.expensesplitter.databinding.FragmentAddBinding
+import com.example.expensesplitter.models.Expense
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [AddFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AddFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    var binding : FragmentAddBinding?= null
+    var expensesList : ArrayList<Expense> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add, container, false)
+
+        binding = FragmentAddBinding.inflate(layoutInflater)
+
+        setCalendar()
+
+       expensesList=  FirestoreClass().getExpense()
+
+
+
+        var tag : String = ""
+        binding?.spAddFrag?.onItemSelectedListener=object:AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                tag = parent?.getItemAtPosition(position).toString()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+        }
+
+        binding?.addBtn?.setOnClickListener {
+            addExpense(tag)
+        }
+
+
+        return binding?.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AddFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AddFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun setCalendar(){
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        binding?.etAddFragDate?.setText("${day}-${month+1}-${year}")
+        binding?.etAddFragDate?.setOnClickListener {
+
+            activity?.let { it1 ->
+                DatePickerDialog(
+                    it1,
+                    { _, year, monthOfYear, dayOfMonth ->
+                        val dat = (dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + year)
+                        binding?.etAddFragDate?.setText(dat)
+                    },
+                    year, month, day
+                )
+            }?.show()
+        }
+
     }
+
+    private fun addExpense(tag : String){
+        var title = binding?.etAddFragTitle?.text.toString()
+        var amt = 0.0
+        if(binding?.etAddFragExpense?.text?.isNotEmpty() == true){
+            amt= binding?.etAddFragExpense?.text?.toString()?.toDouble()!!
+        }
+
+        var desc = "NA"
+        if(binding?.etAddFragDesc?.text?.isNotEmpty() == true){
+            desc = binding?.etAddFragDesc?.text.toString()
+        }
+
+        val date = binding?.etAddFragDate?.text.toString()
+        var extra = false
+
+        if(binding?.checkBox?.isChecked == true){
+            extra = true
+        }
+
+        if(date.isEmpty() || title.isEmpty()){
+            Toast.makeText(context, "some fields are empty", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val expense = Expense(title,amt,desc,tag,date,extra)
+
+        (activity as MainActivity).showProgressDialog("Adding Expense")
+
+        var expenseHashMap = HashMap<String , Any>()
+
+        expensesList.add(expense)
+        expenseHashMap[Constants.EXP_LIST] = expensesList
+
+        FirestoreClass().addOrUpdateExpense(activity as MainActivity ,this,expenseHashMap)
+    }
+
+
+    fun expAddedSuccessfully() {
+        Log.e("fragment", activity.toString())
+        (activity as MainActivity).hideProgressDialog()
+        binding?.etAddFragTitle?.setText("")
+        setCalendar()
+        binding?.checkBox?.isChecked = false
+        binding?.etAddFragDesc?.setText("")
+        binding?.etAddFragExpense?.setText("0")
+        Toast.makeText(context, "expense added !", Toast.LENGTH_SHORT).show()
+    }
+
 }

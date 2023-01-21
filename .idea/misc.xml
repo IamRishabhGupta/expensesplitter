@@ -3,20 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/pranj/AndroidStudioProjects/expensesplitter/app/src/main/res/drawable-v24/box_rounded_stroked.xml" value="0.1545" />
-        <entry key="..\:/Users/pranj/AndroidStudioProjects/expensesplitter/app/src/main/res/drawable-v24/btn_rounded_stroked.xml" value="0.1" />
-        <entry key="..\:/Users/pranj/AndroidStudioProjects/expensesplitter/app/src/main/res/drawable-v24/ic_baseline_insert_chart_24.xml" value="0.1545" />
-        <entry key="..\:/Users/pranj/AndroidStudioProjects/expensesplitter/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.132" />
-        <entry key="..\:/Users/pranj/AndroidStudioProjects/expensesplitter/app/src/main/res/drawable-v24/shape_rounded_btn.xml" value="0.1545" />
-        <entry key="..\:/Users/pranj/AndroidStudioProjects/expensesplitter/app/src/main/res/drawable/ic_launcher_background.xml" value="0.132" />
-        <entry key="..\:/Users/pranj/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/activity_base.xml" value="0.2" />
-        <entry key="..\:/Users/pranj/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/activity_intro.xml" value="0.2" />
-        <entry key="..\:/Users/pranj/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="..\:/Users/pranj/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/activity_sign_in.xml" value="0.2" />
-        <entry key="..\:/Users/pranj/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
-        <entry key="..\:/Users/pranj/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/activity_splach.xml" value="0.2" />
-        <entry key="..\:/Users/pranj/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/btn_rounded_stroked.xml" value="0.1" />
-        <entry key="..\:/Users/pranj/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/dialog_process.xml" value="0.2" />
+        <entry key="app/src/main/res/drawable/bottom_nav_selector.xml" value="0.109" />
+        <entry key="app/src/main/res/drawable/ic_add_24.xml" value="0.109" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.14114583333333333" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.3098958333333333" />
+      </map>
+    </option>
+  </component>
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/bottom_nav_selector.xml" value="0.109" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.14114583333333333" />
       </map>
     </option>
   </component>

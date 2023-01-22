@@ -227,14 +227,50 @@ class FirestoreClass {
 
     fun addRequestMoney(moneyData: ArrayList<money>){
         var request : HashMap<String,Any> = HashMap()
-        request[Constants.REQ] = moneyData
-        request[Constants.OWD] = moneyData
 
+
+        val temp : ArrayList<money> = ArrayList()
+
+        mFireStore.collection(Constants.SPLIT).document(getCurrentUserId())
+            .get().addOnSuccessListener {doc ->
+
+                if(doc.data != null){
+                    for(num in doc.get(Constants.REQ) as ArrayList<HashMap<String,Any>>){
+
+                        var mon= money(num.get("uuid").toString(),num.get("name").toString(),
+                            num.get("title").toString(),num.get("amount").toString().toDouble()
+                        )
+                        moneyData.add(mon)
+                    }
+
+                    e("request",moneyData.toString())
+                }
+            }
+
+        request[Constants.REQ] = moneyData
         mFireStore.collection(Constants.SPLIT).document(getCurrentUserId())
             .set(request).addOnSuccessListener {
                 e("Added in firestore",request.toString())
             }.addOnFailureListener {
 
+            }
+    }
+
+    fun getRequestMoneyData(){
+        var Reqdata : ArrayList<money> = ArrayList()
+        mFireStore.collection(Constants.SPLIT).document(getCurrentUserId())
+            .get().addOnSuccessListener {doc ->
+                if(doc.data != null){
+                    for(num in doc.get(Constants.REQ) as ArrayList<HashMap<String,Any>>){
+
+                        var mon= money(num.get("uuid").toString(),num.get("name").toString(),
+                            num.get("title").toString(),num.get("amount").toString().toDouble()
+                        )
+                        Reqdata.add(mon)
+                    }
+
+                    e("request",Reqdata.toString())
+                }
             }
     }
 

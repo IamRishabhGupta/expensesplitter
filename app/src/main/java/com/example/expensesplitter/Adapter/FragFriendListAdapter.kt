@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.expensesplitter.databinding.FragmentSplitFriendBinding
+import com.example.expensesplitter.databinding.FriendNameItemBinding
 import com.example.expensesplitter.databinding.FriendRecycleviewItemBinding
 import com.example.expensesplitter.databinding.RecyclerviewItemBinding
 import com.example.expensesplitter.models.Expense
@@ -13,14 +14,14 @@ open class FragFriendListAdapter(
         private var list : ArrayList<String> ) :
         RecyclerView.Adapter<FragFriendListAdapter.ItemExpenseHolder>() {
 
-        class ItemExpenseHolder(binding: FriendRecycleviewItemBinding) :
+        class ItemExpenseHolder(binding: FriendNameItemBinding) :
                 RecyclerView.ViewHolder(binding.root) {
                 val name = binding.friendItem
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemExpenseHolder {
                 return ItemExpenseHolder(
-                        FriendRecycleviewItemBinding.inflate(
+                        FriendNameItemBinding.inflate(
                                 LayoutInflater.from(parent.context), parent, false
                         )
                 )

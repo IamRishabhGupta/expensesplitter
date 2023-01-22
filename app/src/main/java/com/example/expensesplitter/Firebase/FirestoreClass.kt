@@ -14,11 +14,11 @@ import com.example.expensesplitter.activity.splitActivity
 import com.example.expensesplitter.fragments.AddFragment
 import com.example.expensesplitter.fragments.splitFragmentFriend
 import com.example.expensesplitter.models.Expense
+import com.example.expensesplitter.models.friend
 import com.example.expensesplitter.models.user
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import com.google.firebase.firestore.auth.User
 
 class FirestoreClass {
     private val mFireStore = FirebaseFirestore.getInstance()
@@ -109,15 +109,19 @@ class FirestoreClass {
             }
     }
 
-    fun getAddFriends(email: String) {
+    fun getAddFriends(email: String, fragment: splitFragmentFriend) {
         mFireStore.collection(Constants.USERS).whereEqualTo(Constants.EMAIL, email).get()
             .addOnSuccessListener { document ->
                 var uid: String = ""
-                e("friend", document.documents.toString())
+                e("friend ye mila", document.documents.toString())
+                if(document.documents.toString().isEmpty()){
+                    e("ghg","sallalala")
+                    return@addOnSuccessListener
+                }
                 var friendList: ArrayList<String> = ArrayList()
                 for (i in document) {
                     val friend = i.toObject(user::class.java)
-                    e("friend", friend.toString())
+                    e("friend nahi mila", friend.toString())
                     uid = friend.id
                 }
                 val friendHashMap = HashMap<String, Any>()
@@ -127,14 +131,14 @@ class FirestoreClass {
                             for (i in it.data!!.get("friends") as ArrayList<String>) {
                                     friendList.add(i)
                             }
-                            friendList.add(uid)
                         }
+                        friendList.add(uid)
                         e("3" , "ho gaya")
                         friendHashMap[Constants.FRIENDS] = friendList
                         mFireStore.collection(Constants.USERS).document(getCurrentUserId())
                             .update(friendHashMap).addOnSuccessListener {
                                 e("4","ho gaya")
-                                getFriendsFrag(splitFragmentFriend())
+                                getFriendsFrag(fragment)
                         }.addOnFailureListener {
                             Log.e("friend error :", "error while friends")
                         }
@@ -150,7 +154,7 @@ class FirestoreClass {
     @SuppressLint("RestrictedApi")
     fun getFriends(activity: Activity){
         var friend = ArrayList<String>()
-        var friendName = ArrayList<String>()
+        var friendName = ArrayList<friend>()
         mFireStore.collection(Constants.USERS)
             .document(getCurrentUserId()).get().addOnSuccessListener {
                 if (it.data?.isNotEmpty() == true) {
@@ -166,7 +170,7 @@ class FirestoreClass {
 //                            e("2 --- " , idf)
                             if(i.data?.get("id").toString() == idf){
                                 e("ye gazab hai",i.data?.get("name").toString())
-                                friendName.add(i.data?.get("name").toString())
+                                friendName.add(friend(i.data?.get("name").toString(),i.data?.get("id").toString()))
                             }
                         }
                     }
@@ -187,7 +191,7 @@ class FirestoreClass {
 
 
     @SuppressLint("RestrictedApi")
-    fun getFriendsFrag(fragment:Fragment){
+    fun getFriendsFrag(fragment: splitFragmentFriend){
         var friend = ArrayList<String>()
         var friendName = ArrayList<String>()
         mFireStore.collection(Constants.USERS)
@@ -209,13 +213,10 @@ class FirestoreClass {
                             }
                         }
                     }
+                    fragment.getFriendsName(friendName)
+                    e("yaha toh aya hai", friendName.toString())
                 }
-                when(fragment){
-                    is splitFragmentFriend ->{
-                        fragment.getFriendsName(friendName)
-                        e("yaha toh aya hai",friendName.toString())
-                    }
-                }
+
             }.addOnFailureListener {
 
             }

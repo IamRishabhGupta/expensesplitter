@@ -15,6 +15,9 @@
         tools:ignore="ExtraText"
         tools:targetApi="31">
         <activity
+            android:name=".FriendStatusActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.splitActivity"
             android:exported="false" />
         <activity

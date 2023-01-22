@@ -194,9 +194,9 @@ class FirestoreClass {
 
 
     @SuppressLint("RestrictedApi")
-    fun getFriendsFrag(fragment: splitFragmentFriend){
+    fun getFriendsFrag(frag: splitFragmentFriend){
         var friend = ArrayList<String>()
-        var friendName = ArrayList<String>()
+        var friendName = ArrayList<friend>()
         mFireStore.collection(Constants.USERS)
             .document(getCurrentUserId()).get().addOnSuccessListener {
                 if (it.data?.isNotEmpty() == true) {
@@ -212,14 +212,16 @@ class FirestoreClass {
 //                            e("2 --- " , idf)
                             if(i.data?.get("id").toString() == idf){
                                 e("ye gazab hai",i.data?.get("name").toString())
-                                friendName.add(i.data?.get("name").toString())
+                                friendName.add(friend(i.data?.get("name").toString(),i.data?.get("id").toString()))
                             }
                         }
                     }
-                    fragment.getFriendsName(friendName)
-                    e("yaha toh aya hai", friendName.toString())
                 }
-
+                when(frag){
+                    is splitFragmentFriend ->{
+                        frag.getFriendsName(friendName)
+                    }
+                }
             }.addOnFailureListener {
 
             }

@@ -4,19 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
-    tools:context=".activity.splitActivity">
+    android:orientation="vertical"
+    tools:context=".activity.FriendStatusActivity">
 
-
-
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_split_view"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        />
-
-
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:textSize="20sp"
+        android:textColor="@color/purple_200"
 
 </LinearLayout>

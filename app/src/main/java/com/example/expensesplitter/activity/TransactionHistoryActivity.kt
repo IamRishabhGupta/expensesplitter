@@ -51,9 +51,9 @@ class TransitionHistoryActivity : BaseActivity(){
             }
             e("kya hua hau","batao to sahi")
             FirestoreClass().addRequestMoney(moneydata)
-
-
-
+            val rv = findViewById<RecyclerView>(R.id.rv_trans_history)
+            rv.visibility = View.VISIBLE
+            findViewById<LinearLayout>(R.id.friends).visibility = View.GONE
         }
 
 

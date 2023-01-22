@@ -15,10 +15,13 @@ import com.example.expensesplitter.fragments.AddFragment
 import com.example.expensesplitter.fragments.splitFragmentFriend
 import com.example.expensesplitter.models.Expense
 import com.example.expensesplitter.models.friend
+import com.example.expensesplitter.models.money
 import com.example.expensesplitter.models.user
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import com.google.type.Money
+import java.sql.Array
 
 class FirestoreClass {
     private val mFireStore = FirebaseFirestore.getInstance()
@@ -221,6 +224,115 @@ class FirestoreClass {
 
             }
     }
+
+    fun addRequestMoney(moneyData: ArrayList<money>){
+        var request : HashMap<String,Any> = HashMap()
+
+        mFireStore.collection(Constants.SPLIT).document(getCurrentUserId())
+            .get().addOnSuccessListener {doc ->
+
+                if(doc.data != null){
+                    for(num in doc.get(Constants.REQ) as ArrayList<HashMap<String,Any>>){
+
+                        var mon= money(num.get("uuid").toString(),num.get("name").toString(),
+                            num.get("title").toString(),num.get("amount").toString().toDouble()
+                        )
+                        moneyData.add(mon)
+                    }
+
+                    e("request",moneyData.toString())
+                }
+            }
+
+        request[Constants.REQ] = moneyData
+        mFireStore.collection(Constants.SPLIT).document(getCurrentUserId())
+            .set(request, SetOptions.merge()).addOnSuccessListener {
+                e("Added in firestore",request.toString())
+            }.addOnFailureListener {
+
+            }
+
+
+
+        for(i in moneyData){
+            var data : ArrayList<money> = ArrayList()
+            mFireStore.collection(Constants.SPLIT).document(i.uuid.toString()).get()
+                .addOnSuccessListener {doc ->
+                    if(doc.data != null){
+                        for(num in doc.get(Constants.OWD) as ArrayList<HashMap<String,Any>>){
+
+                            var mon= money(num.get("uuid").toString(),num.get("name").toString(),
+                                num.get("title").toString(),num.get("amount").toString().toDouble()
+                            )
+                            data.add(mon)
+                        }
+
+                        e("request",moneyData.toString())
+                    }
+                }
+            data.add(money(i.uuid,i.name,i.title,i.amount))
+
+            request[Constants.OWD] = moneyData
+
+            mFireStore.collection(Constants.SPLIT).document(i.uuid.toString())
+                .set(request, SetOptions.merge()).addOnSuccessListener {
+                    e("Added in firestore",request.toString())
+                }.addOnFailureListener {
+                }
+        }
+    }
+
+    fun getRequestMoneyData(){
+        var Reqdata : ArrayList<money> = ArrayList()
+        mFireStore.collection(Constants.SPLIT).document(getCurrentUserId())
+            .get().addOnSuccessListener {doc ->
+                if(doc.data != null){
+                    for(num in doc.get(Constants.REQ) as ArrayList<HashMap<String,Any>>){
+
+                        var mon= money(num.get("uuid").toString(),num.get("name").toString(),
+                            num.get("title").toString(),num.get("amount").toString().toDouble()
+                        )
+                        Reqdata.add(mon)
+                    }
+
+                    e("request",Reqdata.toString())
+                }
+            }
+    }
+
+    fun getRequestMoney(){
+        var oweList:ArrayList<money> = ArrayList()
+        var reqList:ArrayList<money> = ArrayList()
+        mFireStore.collection(Constants.SPLIT).document(getCurrentUserId())
+            .get().addOnSuccessListener {
+                doc->
+                if(doc.data!=null){
+                    for (num in doc.get(Constants.OWD) as ArrayList<HashMap<String, Any>>) {
+                        var mone = money(
+                            num.get("uuid").toString(),
+                            num.get("name").toString(),
+                            num.get("title").toString(),
+                            num.get("amount").toString().toDouble()
+                        )
+                        oweList.add(mone)
+                    }
+                    for (num in doc.get(Constants.REQ) as ArrayList<HashMap<String, Any>>) {
+                        var mone = money(
+                            num.get("uuid").toString(),
+                            num.get("name").toString(),
+                            num.get("title").toString(),
+                            num.get("amount").toString().toDouble()
+                        )
+                        reqList.add(mone)
+                    }
+                    e("result owe", oweList.toString())
+                }
+            }.addOnFailureListener {
+               e("nahi aaya","nahi aaya")
+            }
+    }
+
+
 
 
 }

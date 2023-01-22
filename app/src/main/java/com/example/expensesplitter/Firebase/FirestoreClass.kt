@@ -226,7 +226,7 @@ class FirestoreClass {
 
     fun addRequestMoney(moneyData: ArrayList<money>){
         var request : HashMap<String,Any> = HashMap()
-
+        e("Problem","Don't know")
         mFireStore.collection(Constants.SPLIT).document(getCurrentUserId())
             .get().addOnSuccessListener {doc ->
 

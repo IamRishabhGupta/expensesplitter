@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.expensesplitter.databinding.SplitItemBinding
-import com.example.expensesplitter.models.Expense
 import com.example.expensesplitter.models.money
 
 class splitAdapter (

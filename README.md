@@ -7,13 +7,14 @@ Expense Spliter is an android application built using Kotlin and Firebase that a
 
 
 ## Features
-
-- Users can create new expense split and later add thier friend's name who are registered with the app
-- History of all splits created will be shown.
-- User can add custom amount for each user in each split created.
-- This app can also be used to keep track of how you track your personal expenses .It will show how much money you have spent and how you have spent it on monthly basis (example-Dining,Lifestyle,Bills etc)
+- Add a friend name who is registered with the app
+- Users can create new expense splits and later add their friends.
+- The history of all splits created will be shown.
+- Users can add a custom amount for each user in each split created.
+- This app can also be used to keep track of how you track your personal expenses. It will show how much money you have spent and how you have spent it on monthly basis (example-Dining, Lifestyle, Bills etc)
 - User can access their account from any device by logging in.
-- users can also sign out from thier account
+- users can also sign out from their account
+
 
 
 ## Tech Stack
@@ -39,16 +40,18 @@ Expense Spliter is an android application built using Kotlin and Firebase that a
 ## How to Use The Application
 - sign up for the application using an email id and create a password.
 - Log in to the app using your previously created credentials.
-- Click the button on top right corner to add friends.
-- here from Navbar click on add friend to add new friend.
+- Click the button on the top right corner to add friends.
+- here from Navbar click on add friend to add a new friend.
 (NOTE-new friend will be added only if he is registered on the application).
-- on clicking add friend button enter Friend's Email ID.
-- All the added friend's Name will be shown in the Recycler View.
-- click on new to add new expense and enter the required fields like title ,field description etc.
-- Go Back to main landing page ,scroll down and click on Transaction History and add your friends to the expense 
-- Enter the expense split of respective friend in textarea in front of it.
-(Note- Tap on Friend's name after entering amount)
-- Click on split to send request to friends.
+- on clicking add friend button enter the Friend's Email ID.
+- All the added friends' Names will be shown in the Recycler View.
+- Click on new to add new expense and enter the required fields like title, field description etc.
+- Go Back to the main landing page, scroll down and click on Transaction History and add your friends to the expense 
+- Enter the expense split of the respective friend in the text area in front of it.
+(Note- Tap on the Friend's name after entering the amount)
+- Click on split to send the request to friends.
+
+
 
 ## Authors
 

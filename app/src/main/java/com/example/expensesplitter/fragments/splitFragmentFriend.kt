@@ -21,7 +21,7 @@ class splitFragmentFriend : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         binding = FragmentSplitFriendBinding.inflate(layoutInflater)
 
         binding?.llAddfrndFirst?.visibility=View.VISIBLE

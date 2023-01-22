@@ -15,10 +15,13 @@ import com.example.expensesplitter.fragments.AddFragment
 import com.example.expensesplitter.fragments.splitFragmentFriend
 import com.example.expensesplitter.models.Expense
 import com.example.expensesplitter.models.friend
+import com.example.expensesplitter.models.money
 import com.example.expensesplitter.models.user
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import com.google.type.Money
+import java.sql.Array
 
 class FirestoreClass {
     private val mFireStore = FirebaseFirestore.getInstance()
@@ -217,6 +220,19 @@ class FirestoreClass {
                     e("yaha toh aya hai", friendName.toString())
                 }
 
+            }.addOnFailureListener {
+
+            }
+    }
+
+    fun addRequestMoney(moneyData: ArrayList<money>){
+        var request : HashMap<String,Any> = HashMap()
+        request[Constants.REQ] = moneyData
+        request[Constants.OWD] = moneyData
+
+        mFireStore.collection(Constants.SPLIT).document(getCurrentUserId())
+            .set(request).addOnSuccessListener {
+                e("Added in firestore",request.toString())
             }.addOnFailureListener {
 
             }

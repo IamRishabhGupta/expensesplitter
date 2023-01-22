@@ -13,6 +13,7 @@ import com.example.expensesplitter.Firebase.FirestoreClass
 import com.example.expensesplitter.R
 import com.example.expensesplitter.models.Expense
 import com.example.expensesplitter.models.friend
+import com.example.expensesplitter.models.money
 import com.example.pocketmanager.Adapter.ExpenseListAdapter
 import com.google.android.material.tabs.TabLayout
 
@@ -23,6 +24,9 @@ class TransitionHistoryActivity : BaseActivity(){
     var NameOfFriends : ArrayList<friend> = ArrayList()
     var SplitAmountWithFriends : HashMap<String,ArrayList<String>> = HashMap()
     var adapter : ExpenseListAdapter ?= null
+    var expense : Expense ?= null
+    var moneydata : ArrayList<money> = ArrayList()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +37,27 @@ class TransitionHistoryActivity : BaseActivity(){
             rv.visibility = View.VISIBLE
             findViewById<LinearLayout>(R.id.friends).visibility = View.GONE
         }
+
+        e("kya hua hau"," 1 batao to sahi")
+        findViewById<TextView>(R.id.splitDoneBtn).setOnClickListener {
+            e("kya hua hau"," 2 batao to sahi")
+            e("1. size",SplitAmountWithFriends.size.toString())
+            if(expense != null && SplitAmountWithFriends.size > 0){
+                e("size",SplitAmountWithFriends.size.toString())
+                for (i in SplitAmountWithFriends){
+                    moneydata.add(money(i.key,i.value.get(0),i.value.get(1),
+                    i.value.get(2).toDouble()))
+                }
+            }
+            e("kya hua hau","batao to sahi")
+            FirestoreClass().addRequestMoney(moneydata)
+
+
+
+        }
+
+
+
 
         FirestoreClass().getExpense(this)
 
@@ -118,6 +143,7 @@ class TransitionHistoryActivity : BaseActivity(){
 
         adapter?.setOnClickListener(object  : ExpenseListAdapter.OnClickListener{
             override fun onClick(position: Int, expense: Expense) {
+                this@TransitionHistoryActivity.expense = expense
                 val rv = findViewById<RecyclerView>(R.id.rv_trans_history)
                 rv.visibility = View.GONE
                 findViewById<LinearLayout>(R.id.friends).visibility = View.VISIBLE
@@ -135,7 +161,7 @@ class TransitionHistoryActivity : BaseActivity(){
         var adapter = FriendsListAdapter(NameOfFriends)
         adapter.setOnClickListener(object : FriendsListAdapter.OnClickListener{
             override fun onClick(position: Int, friend: friend, amt: Double) {
-                SplitAmountWithFriends[friend.id] = arrayListOf(friend.name,amt.toString())
+                SplitAmountWithFriends[friend.id] = arrayListOf(friend.name, expense!!.title,amt.toString())
             }
 
 

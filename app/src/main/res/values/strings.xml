@@ -5,6 +5,7 @@
     <string name="addGroup">Add Group</string>
     <string name="emailText">Enter Email of New Friend </string>
     <string name="stats">Stats</string>
+    <string name="signOut">Sign Out</string>
     <string name="New">New</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

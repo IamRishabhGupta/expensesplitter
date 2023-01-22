@@ -46,7 +46,7 @@ open class FriendsListAdapter (
     }
 
     interface OnClickListener{
-        fun onClick(position: Int , friend: friend, amt : Double)
+        fun onClick(position: Int , friend: friend, amt : Double = 0.00)
     }
 
     fun setOnClickListener(onClickListener: OnClickListener){

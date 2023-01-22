@@ -281,9 +281,9 @@ class FirestoreClass {
         }
     }
 
-    fun getRequestMoneyDataReq(activity: FriendStatusActivity){
+    fun getRequestMoneyDataReq(activity: FriendStatusActivity, id: String){
         var Reqdata : ArrayList<money> = ArrayList()
-        mFireStore.collection(Constants.SPLIT).document(getCurrentUserId())
+        mFireStore.collection(Constants.SPLIT).document(id)
             .get().addOnSuccessListener {doc ->
                 if(doc.data != null){
                     for(num in doc.get(Constants.REQ) as ArrayList<HashMap<String,Any>>){

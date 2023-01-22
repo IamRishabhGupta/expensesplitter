@@ -1,11 +1,12 @@
 package com.example.expensesplitter.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log.e
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.expensesplitter.Adapter.splitAdapter
+import com.example.expensesplitter.Constants.Constants
 import com.example.expensesplitter.Firebase.FirestoreClass
 import com.example.expensesplitter.R
 import com.example.expensesplitter.models.money
@@ -19,10 +20,12 @@ class FriendStatusActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_friend_status)
 
-        var name = intent.hasExtra("name")
-        var id = intent.hasExtra("id")
+        var name = intent.getStringExtra("name")
+        var id : String = intent.getStringExtra(Constants.ID)!!
 
-        FirestoreClass().getRequestMoneyDataReq(this)
+        findViewById<TextView>(R.id.tv_username).text = name.toString()
+
+        FirestoreClass().getRequestMoneyDataReq(this , id)
     }
 
     fun gotTheListReq(ReqList : ArrayList<money>){

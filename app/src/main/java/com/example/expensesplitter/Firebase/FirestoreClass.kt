@@ -7,10 +7,7 @@ import android.util.Log.e
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.expensesplitter.Constants.Constants
-import com.example.expensesplitter.activity.MainActivity
-import com.example.expensesplitter.activity.SignUp
-import com.example.expensesplitter.activity.TransitionHistoryActivity
-import com.example.expensesplitter.activity.splitActivity
+import com.example.expensesplitter.activity.*
 import com.example.expensesplitter.fragments.AddFragment
 import com.example.expensesplitter.fragments.splitFragmentFriend
 import com.example.expensesplitter.models.Expense
@@ -284,58 +281,25 @@ class FirestoreClass {
         }
     }
 
-    fun getRequestMoneyData(){
+    fun getRequestMoneyDataReq(activity: FriendStatusActivity){
         var Reqdata : ArrayList<money> = ArrayList()
         mFireStore.collection(Constants.SPLIT).document(getCurrentUserId())
             .get().addOnSuccessListener {doc ->
                 if(doc.data != null){
                     for(num in doc.get(Constants.REQ) as ArrayList<HashMap<String,Any>>){
 
-                        var mon= money(num.get("uuid").toString(),num.get("name").toString(),
-                            num.get("title").toString(),num.get("amount").toString().toDouble()
+                        var mon= money(
+                            num["uuid"].toString(), num["name"].toString(),
+                            num["title"].toString(), num["amount"].toString().toDouble()
                         )
                         Reqdata.add(mon)
                     }
 
                     e("request",Reqdata.toString())
+                    activity.gotTheListReq(Reqdata)
                 }
             }
     }
-
-    fun getRequestMoney(){
-        var oweList:ArrayList<money> = ArrayList()
-        var reqList:ArrayList<money> = ArrayList()
-        mFireStore.collection(Constants.SPLIT).document(getCurrentUserId())
-            .get().addOnSuccessListener {
-                doc->
-                if(doc.data!=null){
-                    for (num in doc.get(Constants.OWD) as ArrayList<HashMap<String, Any>>) {
-                        var mone = money(
-                            num.get("uuid").toString(),
-                            num.get("name").toString(),
-                            num.get("title").toString(),
-                            num.get("amount").toString().toDouble()
-                        )
-                        oweList.add(mone)
-                    }
-                    for (num in doc.get(Constants.REQ) as ArrayList<HashMap<String, Any>>) {
-                        var mone = money(
-                            num.get("uuid").toString(),
-                            num.get("name").toString(),
-                            num.get("title").toString(),
-                            num.get("amount").toString().toDouble()
-                        )
-                        reqList.add(mone)
-                    }
-                    e("result owe", oweList.toString())
-                }
-            }.addOnFailureListener {
-               e("nahi aaya","nahi aaya")
-            }
-    }
-
-
-
 
 }
 

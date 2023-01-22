@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/user/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/activity_friend_status.xml" value="0.23505434782608695" />
         <entry key="..\:/Users/user/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/activity_split.xml" value="0.13949275362318841" />
         <entry key="..\:/Users/user/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/activity_transaction_history.xml" value="0.16" />
         <entry key="..\:/Users/user/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/fragment_split_friend.xml" value="0.13949275362318841" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/split_item.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

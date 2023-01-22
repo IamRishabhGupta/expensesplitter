@@ -11,7 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Username"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:textColor="@color/purple_200"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"/>
 
 </LinearLayout>

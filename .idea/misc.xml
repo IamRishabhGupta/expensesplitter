@@ -3,9 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/user/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/activity_friend_status.xml" value="0.23505434782608695" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/activity_splach.xml" value="0.23097826086956522" />
         <entry key="..\:/Users/user/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/activity_split.xml" value="0.13949275362318841" />
         <entry key="..\:/Users/user/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/activity_transaction_history.xml" value="0.16" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/fragment_split_friend.xml" value="0.13949275362318841" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/dialog_split_expense_friends_item.xml" value="0.12" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/fragment_split_friend.xml" value="0.1" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/friend_name_item.xml" value="0.2115036231884058" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/friend_recycleview_item.xml" value="0.14447463768115942" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/recyclerview_item.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/expensesplitter/app/src/main/res/layout/split_item.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:background="@color/black"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/splitTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="username"
+        android:layout_margin="20dp"
+        android:textColor="@color/purple_200"
+        android:textSize="20sp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/splitAmt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="date"
+        android:textColor="@color/purple_200"
+        android:textSize="20sp"
+        android:layout_weight="0.5"/>
+
+</LinearLayout>

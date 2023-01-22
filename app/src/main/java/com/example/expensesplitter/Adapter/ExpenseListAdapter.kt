@@ -1,4 +1,4 @@
-package com.example.pocketmanager.Adapter
+package com.example.expensesplitter.Adapter
 
 import android.view.LayoutInflater
 import android.view.View

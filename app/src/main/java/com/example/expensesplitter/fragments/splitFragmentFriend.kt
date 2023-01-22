@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.expensesplitter.Adapter.FragFriendListAdapter
+import com.example.expensesplitter.Constants.Constants
 import com.example.expensesplitter.Firebase.FirestoreClass
 import com.example.expensesplitter.activity.FriendStatusActivity
 import com.example.expensesplitter.databinding.FragmentSplitFriendBinding
@@ -27,19 +28,18 @@ class splitFragmentFriend : Fragment() {
 
         binding = FragmentSplitFriendBinding.inflate(layoutInflater)
 
-        binding?.llAddfrndFirst?.visibility=View.VISIBLE
+        FirestoreClass().getFriendsFrag(this)
+
         binding?.llAddfrndSecond?.visibility=View.GONE
 
         binding?.newFriendBtn?.setOnClickListener{
-            binding?.llAddfrndFirst?.visibility=View.GONE
             binding?.llAddfrndSecond?.visibility=View.VISIBLE
+            binding?.newFriendBtn?.visibility = View.GONE
         }
 
         binding?.btnNewFriendEmail?.setOnClickListener {
             addFriend()
         }
-
-        FirestoreClass().getFriendsFrag(this)
 
 
         return binding?.root
@@ -65,7 +65,7 @@ class splitFragmentFriend : Fragment() {
             override fun onClick(model: friend) {
                 var intent = Intent(requireContext(),FriendStatusActivity::class.java)
                 intent.putExtra("name",model.name)
-                intent.putExtra("id",model.id)
+                intent.putExtra(Constants.ID,model.id)
                 startActivity(intent)
             }
         })

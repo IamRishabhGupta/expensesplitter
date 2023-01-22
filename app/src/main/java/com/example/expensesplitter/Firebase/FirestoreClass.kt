@@ -7,10 +7,7 @@ import android.util.Log.e
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.expensesplitter.Constants.Constants
-import com.example.expensesplitter.activity.MainActivity
-import com.example.expensesplitter.activity.SignUp
-import com.example.expensesplitter.activity.TransitionHistoryActivity
-import com.example.expensesplitter.activity.splitActivity
+import com.example.expensesplitter.activity.*
 import com.example.expensesplitter.fragments.AddFragment
 import com.example.expensesplitter.fragments.splitFragmentFriend
 import com.example.expensesplitter.models.Expense
@@ -229,7 +226,6 @@ class FirestoreClass {
 
     fun addRequestMoney(moneyData: ArrayList<money>){
         var request : HashMap<String,Any> = HashMap()
-
         mFireStore.collection(Constants.SPLIT).document(getCurrentUserId())
             .get().addOnSuccessListener {doc ->
 
@@ -255,7 +251,7 @@ class FirestoreClass {
             }
 
 
-
+        request[Constants.REQ] = ArrayList<money>()
         for(i in moneyData){
             var data : ArrayList<money> = ArrayList()
             mFireStore.collection(Constants.SPLIT).document(i.uuid.toString()).get()
@@ -263,10 +259,12 @@ class FirestoreClass {
                     if(doc.data != null){
                         for(num in doc.get(Constants.OWD) as ArrayList<HashMap<String,Any>>){
 
-                            var mon= money(num.get("uuid").toString(),num.get("name").toString(),
-                                num.get("title").toString(),num.get("amount").toString().toDouble()
-                            )
-                            data.add(mon)
+                            if (i.uuid == num.get("uuid")){
+                                var mon= money(num.get("uuid").toString(),num.get("name").toString(),
+                                    num.get("title").toString(),num.get("amount").toString().toDouble()
+                                )
+                                data.add(mon)
+                            }
                         }
 
                         e("request",moneyData.toString())
@@ -284,58 +282,45 @@ class FirestoreClass {
         }
     }
 
-    fun getRequestMoneyData(){
+    fun getRequestMoneyDataReq(activity: FriendStatusActivity, id: String){
         var Reqdata : ArrayList<money> = ArrayList()
-        mFireStore.collection(Constants.SPLIT).document(getCurrentUserId())
+        mFireStore.collection(Constants.SPLIT).document(id)
             .get().addOnSuccessListener {doc ->
                 if(doc.data != null){
                     for(num in doc.get(Constants.REQ) as ArrayList<HashMap<String,Any>>){
 
-                        var mon= money(num.get("uuid").toString(),num.get("name").toString(),
-                            num.get("title").toString(),num.get("amount").toString().toDouble()
+                        var mon= money(
+                            num["uuid"].toString(), num["name"].toString(),
+                            num["title"].toString(), num["amount"].toString().toDouble()
                         )
                         Reqdata.add(mon)
                     }
 
                     e("request",Reqdata.toString())
+                    activity.gotTheListReq(Reqdata)
                 }
             }
     }
 
-    fun getRequestMoney(){
-        var oweList:ArrayList<money> = ArrayList()
-        var reqList:ArrayList<money> = ArrayList()
-        mFireStore.collection(Constants.SPLIT).document(getCurrentUserId())
-            .get().addOnSuccessListener {
-                doc->
-                if(doc.data!=null){
-                    for (num in doc.get(Constants.OWD) as ArrayList<HashMap<String, Any>>) {
-                        var mone = money(
-                            num.get("uuid").toString(),
-                            num.get("name").toString(),
-                            num.get("title").toString(),
-                            num.get("amount").toString().toDouble()
+    fun getRequestMoneyDataOwe(activity: FriendStatusActivity, id: String){
+        var Owedata : ArrayList<money> = ArrayList()
+        mFireStore.collection(Constants.SPLIT).document(id)
+            .get().addOnSuccessListener {doc ->
+                if(doc.data != null){
+                    for(num in doc.get(Constants.OWD) as ArrayList<HashMap<String,Any>>){
+
+                        var mon= money(
+                            num["uuid"].toString(), num["name"].toString(),
+                            num["title"].toString(), num["amount"].toString().toDouble()
                         )
-                        oweList.add(mone)
+                        Owedata.add(mon)
                     }
-                    for (num in doc.get(Constants.REQ) as ArrayList<HashMap<String, Any>>) {
-                        var mone = money(
-                            num.get("uuid").toString(),
-                            num.get("name").toString(),
-                            num.get("title").toString(),
-                            num.get("amount").toString().toDouble()
-                        )
-                        reqList.add(mone)
-                    }
-                    e("result owe", oweList.toString())
+
+                    e("request",Owedata.toString())
+                    activity.gotTheListOwe(Owedata)
                 }
-            }.addOnFailureListener {
-               e("nahi aaya","nahi aaya")
             }
     }
-
-
-
 
 }
 

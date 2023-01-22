@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:background="@color/black">
 
@@ -18,7 +18,7 @@
         android:textColor="@color/purple_200"
         android:layout_height="wrap_content"/>
 
-    <com.google.android.material.textfield.TextInputEditText
+    <EditText
         android:layout_width="0dp"
         android:layout_weight="0.2"
         android:hint="0.0"

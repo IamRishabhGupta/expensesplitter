@@ -10,5 +10,6 @@ class Constants {
         const val EMAIL:String="email"
         const val FRIENDS:String="friends"
         const val SPLIT : String = "split"
+        const val ID : String = "id"
     }
 }

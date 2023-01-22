@@ -12,6 +12,7 @@ import com.example.expensesplitter.Adapter.FriendsListAdapter
 import com.example.expensesplitter.Firebase.FirestoreClass
 import com.example.expensesplitter.R
 import com.example.expensesplitter.models.Expense
+import com.example.expensesplitter.models.friend
 import com.example.pocketmanager.Adapter.ExpenseListAdapter
 import com.google.android.material.tabs.TabLayout
 
@@ -19,7 +20,8 @@ class TransitionHistoryActivity : BaseActivity(){
 
     var exp : ArrayList<Expense> = ArrayList()
     var adapterExpList : ArrayList<Expense> = ArrayList()
-    var NameOfFriends : ArrayList<String> = ArrayList()
+    var NameOfFriends : ArrayList<friend> = ArrayList()
+    var SplitAmountWithFriends : HashMap<String,ArrayList<String>> = HashMap()
     var adapter : ExpenseListAdapter ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -127,14 +129,22 @@ class TransitionHistoryActivity : BaseActivity(){
         rv.layoutManager = LinearLayoutManager(this)
     }
 
-    fun getFriendsName(friendsName : ArrayList<String>){
+    fun getFriendsName(friendsName: ArrayList<friend>){
         NameOfFriends = friendsName
 
         var adapter = FriendsListAdapter(NameOfFriends)
+        adapter.setOnClickListener(object : FriendsListAdapter.OnClickListener{
+            override fun onClick(position: Int, friend: friend, amt: Double) {
+                SplitAmountWithFriends[friend.id] = arrayListOf(friend.name,amt.toString())
+            }
+
+
+        })
         val namerv = findViewById<RecyclerView>(R.id.rv_friendsSplitMoney)
         namerv.adapter = adapter
         namerv.layoutManager = LinearLayoutManager(this)
     }
+
 
 
 }

@@ -28,6 +28,7 @@
             />
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/amtFriend"
             android:layout_width="0dp"
             android:layout_weight="0.2"
             android:hint="0.0"

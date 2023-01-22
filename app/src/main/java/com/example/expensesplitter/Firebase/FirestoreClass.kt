@@ -4,18 +4,17 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.util.Log
 import android.util.Log.e
-import android.widget.Toast
 import com.example.expensesplitter.Constants.Constants
 import com.example.expensesplitter.activity.MainActivity
 import com.example.expensesplitter.activity.SignUp
 import com.example.expensesplitter.activity.TransitionHistoryActivity
 import com.example.expensesplitter.fragments.AddFragment
 import com.example.expensesplitter.models.Expense
+import com.example.expensesplitter.models.friend
 import com.example.expensesplitter.models.user
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import com.google.firebase.firestore.auth.User
 
 class FirestoreClass {
     private val mFireStore = FirebaseFirestore.getInstance()
@@ -110,11 +109,15 @@ class FirestoreClass {
         mFireStore.collection(Constants.USERS).whereEqualTo(Constants.EMAIL, email).get()
             .addOnSuccessListener { document ->
                 var uid: String = ""
-                e("friend", document.documents.toString())
+                e("friend ye mila", document.documents.toString())
+                if(document.documents.toString().isEmpty()){
+                    e("ghg","sallalala")
+                    return@addOnSuccessListener
+                }
                 var friendList: ArrayList<String> = ArrayList()
                 for (i in document) {
                     val friend = i.toObject(user::class.java)
-                    e("friend", friend.toString())
+                    e("friend nahi mila", friend.toString())
                     uid = friend.id
                 }
                 val friendHashMap = HashMap<String, Any>()
@@ -126,8 +129,8 @@ class FirestoreClass {
                                     friendList.add(i)
 
                             }
-                            friendList.add(uid)
                         }
+                        friendList.add(uid)
                         e("3" , "ho gaya")
                         friendHashMap[Constants.FRIENDS] = friendList
                         mFireStore.collection(Constants.USERS).document(getCurrentUserId())
@@ -148,7 +151,7 @@ class FirestoreClass {
     @SuppressLint("RestrictedApi")
     fun getFriends(activity: Activity){
         var friend = ArrayList<String>()
-        var friendName = ArrayList<String>()
+        var friendName = ArrayList<friend>()
         mFireStore.collection(Constants.USERS)
             .document(getCurrentUserId()).get().addOnSuccessListener {
                 if (it.data?.isNotEmpty() == true) {
@@ -159,12 +162,10 @@ class FirestoreClass {
 
                 mFireStore.collection(Constants.USERS).get().addOnSuccessListener {
                     for (i in it.documents){
-//                        e("1 ---",i.data?.get("name").toString())
                         for(idf in friend){
-//                            e("2 --- " , idf)
                             if(i.data?.get("id").toString() == idf){
                                 e("ye gazab hai",i.data?.get("name").toString())
-                                friendName.add(i.data?.get("name").toString())
+                                friendName.add(friend(i.data?.get("name").toString(),i.data?.get("id").toString()))
                             }
                         }
                     }

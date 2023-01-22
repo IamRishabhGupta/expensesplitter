@@ -83,32 +83,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="gone">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:paddingTop="5dp"
-            android:orientation="horizontal">
+        android:visibility="visible">
+
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Split With Friends"
                 android:textSize="20sp"
                 android:padding="10dp"
                 android:gravity="center"
-                android:textColor="@color/purple_200"
-                android:layout_weight="0.8"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="₹amt"
-                android:textSize="20sp"
-                android:padding="10dp"
-                android:gravity="center"
-                android:textColor="@color/purple_200"
-                android:layout_weight="0.2"/>
-        </LinearLayout>
+                android:textColor="@color/purple_200"/>
+
 
         <View
             android:layout_width="match_parent"
@@ -119,6 +104,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pro Tips"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:textColor="@color/purple_200"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tap on Friends Name After Entering Amount"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:textColor="@color/purple_200"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_friendsSplitMoney"
                 android:layout_width="match_parent"

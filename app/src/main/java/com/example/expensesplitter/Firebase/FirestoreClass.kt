@@ -239,6 +239,7 @@ class FirestoreClass {
                         var mon= money(num.get("uuid").toString(),num.get("name").toString(),
                             num.get("title").toString(),num.get("amount").toString().toDouble()
                         )
+                        e("mon",mon.toString())
                         moneyData.add(mon)
                     }
 
@@ -273,10 +274,11 @@ class FirestoreClass {
 
                         e("request",moneyData.toString())
                     }
-                }
-            data.add(money(i.uuid,i.name,i.title,i.amount))
+                    data.add(money(i.uuid,i.name,i.title,i.amount))
 
-            request[Constants.OWD] = moneyData
+                    request[Constants.OWD] = moneyData
+
+                }
 
             mFireStore.collection(Constants.SPLIT).document(i.uuid.toString())
                 .set(request, SetOptions.merge()).addOnSuccessListener {

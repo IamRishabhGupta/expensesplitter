@@ -50,7 +50,7 @@ class TransitionHistoryActivity : BaseActivity(){
                     i.value.get(2).toDouble()))
                 }
             }
-            e("kya hua hau","batao to sahi")
+            e("kya hua hau",moneydata.toString())
             FirestoreClass().addRequestMoney(moneydata)
             val rv = findViewById<RecyclerView>(R.id.rv_trans_history)
             rv.visibility = View.VISIBLE

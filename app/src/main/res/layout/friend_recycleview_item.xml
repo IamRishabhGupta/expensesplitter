@@ -27,7 +27,7 @@
             android:layout_margin="10dp"
             />
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/amtFriend"
             android:layout_width="0dp"
             android:layout_weight="0.2"

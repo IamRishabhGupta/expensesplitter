@@ -52,7 +52,6 @@ class splitFragmentFriend : Fragment() {
         }else{
             Toast.makeText(requireContext(), "pls enter email", Toast.LENGTH_SHORT).show()
         }
-
     }
 
     fun getFriendsName(friendsName : ArrayList<String>){

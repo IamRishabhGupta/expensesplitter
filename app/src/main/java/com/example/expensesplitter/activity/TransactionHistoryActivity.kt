@@ -156,6 +156,11 @@ class TransitionHistoryActivity : BaseActivity(){
         NameOfFriends = friendsName
 
         var adapter = FriendsListAdapter(NameOfFriends)
+        adapter.setOnClickListener(object : FriendsListAdapter.OnClickListener{
+            override fun onClick(position: Int, friend: friend, amt: Double) {
+                SplitAmountWithFriends[friend.id] = arrayListOf(friend.name, expense!!.title,amt.toString())
+            }
+        })
         val namerv = findViewById<RecyclerView>(R.id.rv_friendsSplitMoney)
         namerv.adapter = adapter
         namerv.layoutManager = LinearLayoutManager(this)

@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_weight="0.45"
             android:layout_height="wrap_content"
-            android:text="@string/the_total_requested_money"
+            android:text="Total Requested Money - 0.0"
             android:textSize="20sp"
             android:layout_margin="20dp"
             android:textColor="#4CAF50"/>
@@ -44,7 +44,7 @@
             android:layout_margin="20dp"
             android:layout_weight="0.45"
             android:layout_height="wrap_content"
-            android:text="@string/the_total_owed_money"
+            android:text="Total Owed Money - 0.0"
             android:textSize="20sp"
             android:textColor="#E91E63"/>
     </LinearLayout>

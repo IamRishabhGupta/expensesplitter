@@ -62,8 +62,8 @@ class FriendStatusActivity : BaseActivity() {
     }
 
     fun SetUpValues(){
-        findViewById<TextView>(R.id.Req).text = "@string/the_total_requested_money" + totalReqMoney.toString()
+        findViewById<TextView>(R.id.Req).text = "Total Requested Money - " + totalReqMoney.toString()
 
-        findViewById<TextView>(R.id.Owe).text = "@string/the_total_owed_money - " + totalOweMoney.toString()
+        findViewById<TextView>(R.id.Owe).text = "Total Owed Money - " + totalOweMoney.toString()
     }
 }

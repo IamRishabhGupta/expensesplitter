@@ -79,7 +79,8 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_dining"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/Div_Height"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_margin="10dp"
         android:layout_marginTop="80dp"
         android:backgroundTint="@color/black"
@@ -121,7 +122,8 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_LifeStyle"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/Div_Height"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_margin="10dp"
         android:layout_marginTop="80dp"
         android:backgroundTint="@color/black"
@@ -163,7 +165,8 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_bills"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/Div_Height"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_margin="10dp"
         android:layout_marginTop="80dp"
         android:backgroundTint="@color/black"
@@ -205,7 +208,8 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_Others"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/Div_Height"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_margin="10dp"
         android:layout_marginTop="80dp"
         android:backgroundTint="@color/black"
@@ -247,7 +251,8 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_history"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_margin="10dp"
         app:cardCornerRadius="8dp">
         <LinearLayout

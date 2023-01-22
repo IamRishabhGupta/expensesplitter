@@ -124,15 +124,19 @@ class FirestoreClass {
                     e("friend nahi mila", friend.toString())
                     uid = friend.id
                 }
+                var check : Boolean = true
                 val friendHashMap = HashMap<String, Any>()
                 mFireStore.collection(Constants.USERS)
                     .document(getCurrentUserId()).get().addOnSuccessListener {
                         if (it.data?.isNotEmpty() == true) {
                             for (i in it.data!!.get("friends") as ArrayList<String>) {
                                     friendList.add(i)
+                                if(i == uid){
+                                    check = false
+                                }
                             }
                         }
-                        friendList.add(uid)
+                        if(check) friendList.add(uid)
                         e("3" , "ho gaya")
                         friendHashMap[Constants.FRIENDS] = friendList
                         mFireStore.collection(Constants.USERS).document(getCurrentUserId())

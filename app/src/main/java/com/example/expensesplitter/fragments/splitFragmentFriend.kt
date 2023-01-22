@@ -50,8 +50,6 @@ class splitFragmentFriend : Fragment() {
         if(binding?.newFriendEmail?.text?.isNotEmpty() == true){
             val email:String=binding?.newFriendEmail?.text?.toString()!!
             FirestoreClass().getAddFriends(email,this)
-            FirestoreClass().getFriendsFrag(this)
-
         }else{
             Toast.makeText(requireContext(), "pls enter email", Toast.LENGTH_SHORT).show()
         }

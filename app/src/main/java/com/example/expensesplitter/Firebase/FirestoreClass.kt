@@ -226,7 +226,6 @@ class FirestoreClass {
 
     fun addRequestMoney(moneyData: ArrayList<money>){
         var request : HashMap<String,Any> = HashMap()
-        e("Problem","Don't know")
         mFireStore.collection(Constants.SPLIT).document(getCurrentUserId())
             .get().addOnSuccessListener {doc ->
 
@@ -252,7 +251,7 @@ class FirestoreClass {
             }
 
 
-
+        request[Constants.REQ] = ArrayList<money>()
         for(i in moneyData){
             var data : ArrayList<money> = ArrayList()
             mFireStore.collection(Constants.SPLIT).document(i.uuid.toString()).get()
@@ -260,10 +259,12 @@ class FirestoreClass {
                     if(doc.data != null){
                         for(num in doc.get(Constants.OWD) as ArrayList<HashMap<String,Any>>){
 
-                            var mon= money(num.get("uuid").toString(),num.get("name").toString(),
-                                num.get("title").toString(),num.get("amount").toString().toDouble()
-                            )
-                            data.add(mon)
+                            if (i.uuid == num.get("uuid")){
+                                var mon= money(num.get("uuid").toString(),num.get("name").toString(),
+                                    num.get("title").toString(),num.get("amount").toString().toDouble()
+                                )
+                                data.add(mon)
+                            }
                         }
 
                         e("request",moneyData.toString())

@@ -56,9 +56,6 @@ class TransitionHistoryActivity : BaseActivity(){
 
         }
 
-
-
-
         FirestoreClass().getExpense(this)
 
         findViewById<TabLayout>(R.id.tl_parent).addOnTabSelectedListener(

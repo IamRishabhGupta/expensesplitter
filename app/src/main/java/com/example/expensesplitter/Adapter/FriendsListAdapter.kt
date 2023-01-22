@@ -3,6 +3,7 @@ package com.example.expensesplitter.Adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.expensesplitter.Firebase.FirestoreClass
 import com.example.expensesplitter.databinding.FriendRecycleviewItemBinding
 import com.example.expensesplitter.models.Expense
 import com.example.expensesplitter.models.friend
@@ -21,6 +22,7 @@ open class FriendsListAdapter (
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendsNameHolder {
         return FriendsNameHolder(
             FriendRecycleviewItemBinding.inflate(
+
                 LayoutInflater.from(parent.context), parent, false
             )
         )
@@ -35,6 +37,7 @@ open class FriendsListAdapter (
             if (onClickListener != null){
                 onClickListener!!.onClick(position,model , holder.amt.text.toString().toDouble())
             }
+
         }
     }
 

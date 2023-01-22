@@ -5,6 +5,7 @@ import android.app.Activity
 import android.util.Log
 import android.util.Log.e
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.expensesplitter.Constants.Constants
 import com.example.expensesplitter.activity.MainActivity
 import com.example.expensesplitter.activity.SignUp
@@ -108,7 +109,7 @@ class FirestoreClass {
             }
     }
 
-    fun getAddFriends(email: String) {
+    fun getAddFriends(email: String, fragment: splitFragmentFriend) {
         mFireStore.collection(Constants.USERS).whereEqualTo(Constants.EMAIL, email).get()
             .addOnSuccessListener { document ->
                 var uid: String = ""
@@ -137,7 +138,7 @@ class FirestoreClass {
                         mFireStore.collection(Constants.USERS).document(getCurrentUserId())
                             .update(friendHashMap).addOnSuccessListener {
                                 e("4","ho gaya")
-                                getFriendsFrag(splitFragmentFriend())
+                                getFriendsFrag(fragment)
                         }.addOnFailureListener {
                             Log.e("friend error :", "error while friends")
                         }
@@ -190,7 +191,7 @@ class FirestoreClass {
 
 
     @SuppressLint("RestrictedApi")
-    fun getFriendsFrag(fragment:Fragment){
+    fun getFriendsFrag(fragment: splitFragmentFriend){
         var friend = ArrayList<String>()
         var friendName = ArrayList<String>()
         mFireStore.collection(Constants.USERS)
@@ -212,13 +213,10 @@ class FirestoreClass {
                             }
                         }
                     }
+                    fragment.getFriendsName(friendName)
+                    e("yaha toh aya hai", friendName.toString())
                 }
-                when(fragment){
-                    is splitFragmentFriend ->{
-                        fragment.getFriendsName(friendName)
-                        e("yaha toh aya hai",friendName.toString())
-                    }
-                }
+
             }.addOnFailureListener {
 
             }

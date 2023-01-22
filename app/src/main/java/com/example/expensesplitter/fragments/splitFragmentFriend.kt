@@ -1,7 +1,6 @@
 package com.example.expensesplitter.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.util.Log.e
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,8 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.expensesplitter.Firebase.FirestoreClass
-import com.example.expensesplitter.R
-import com.example.expensesplitter.databinding.FragmentAddBinding
 import com.example.expensesplitter.databinding.FragmentSplitFriendBinding
 import com.example.pocketmanager.Adapter.FragFriendListAdapter
 
@@ -41,9 +38,6 @@ class splitFragmentFriend : Fragment() {
 
         FirestoreClass().getFriendsFrag(this)
 
-//        binding?.friendRecyclerView?.adapter=FragFriendListAdapter(nameList)
-//            binding?.friendRecyclerView?.layoutManager = LinearLayoutManager(requireContext())
-//            binding?.friendRecyclerView?.visibility=View.VISIBLE
 
         return binding?.root
     }
@@ -52,7 +46,7 @@ class splitFragmentFriend : Fragment() {
 
         if(binding?.newFriendEmail?.text?.isNotEmpty() == true){
             val email:String=binding?.newFriendEmail?.text?.toString()!!
-            FirestoreClass().getAddFriends(email)
+            FirestoreClass().getAddFriends(email,this)
             FirestoreClass().getFriendsFrag(this)
 
         }else{
@@ -64,6 +58,10 @@ class splitFragmentFriend : Fragment() {
     fun getFriendsName(friendsName : ArrayList<String>){
         nameList=friendsName
         e("name",nameList.toString())
+
+        binding?.friendRecyclerView?.adapter=FragFriendListAdapter(nameList)
+            binding?.friendRecyclerView?.layoutManager = LinearLayoutManager(requireContext())
+            binding?.friendlinearlayout?.visibility=View.VISIBLE
     }
 
 }

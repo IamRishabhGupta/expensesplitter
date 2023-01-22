@@ -83,12 +83,26 @@ android:orientation="vertical"
 
 </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/friendRecyclerView"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
+        android:id="@+id/friendlinearlayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/friend_recycleview_item"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="invisible">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Friends"
+            android:layout_margin="10dp"
+            android:textSize="30sp"
+            android:textColor="@color/purple_200"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/friendRecyclerView"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/friend_recycleview_item"/>
+    </LinearLayout>
 
 </LinearLayout>
 

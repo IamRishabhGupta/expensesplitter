@@ -56,9 +56,6 @@ class TransitionHistoryActivity : BaseActivity(){
             findViewById<LinearLayout>(R.id.friends).visibility = View.GONE
         }
 
-
-
-
         FirestoreClass().getExpense(this)
 
         findViewById<TabLayout>(R.id.tl_parent).addOnTabSelectedListener(

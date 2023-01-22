@@ -301,5 +301,25 @@ class FirestoreClass {
             }
     }
 
+    fun getRequestMoneyDataOwe(activity: FriendStatusActivity, id: String){
+        var Owedata : ArrayList<money> = ArrayList()
+        mFireStore.collection(Constants.SPLIT).document(id)
+            .get().addOnSuccessListener {doc ->
+                if(doc.data != null){
+                    for(num in doc.get(Constants.OWD) as ArrayList<HashMap<String,Any>>){
+
+                        var mon= money(
+                            num["uuid"].toString(), num["name"].toString(),
+                            num["title"].toString(), num["amount"].toString().toDouble()
+                        )
+                        Owedata.add(mon)
+                    }
+
+                    e("request",Owedata.toString())
+                    activity.gotTheListOwe(Owedata)
+                }
+            }
+    }
+
 }
 

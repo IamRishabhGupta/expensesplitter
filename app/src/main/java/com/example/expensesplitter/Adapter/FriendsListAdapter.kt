@@ -12,7 +12,6 @@ open class FriendsListAdapter (
                 class FriendsNameHolder(binding: FriendRecycleviewItemBinding) :
                         RecyclerView.ViewHolder(binding.root){
                             var name = binding.friendItem
-                    var amt = binding.amtFriend
                         }
 
     private var onClickListener : OnClickListener?= null

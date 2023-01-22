@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/black"
     tools:context=".activity.FriendStatusActivity">
 
     <TextView
@@ -22,5 +23,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/Req"
+            android:layout_width="match_parent"
+            android:layout_weight="0.45"
+            android:layout_height="wrap_content"
+            android:text="@string/the_total_requested_money"
+            android:textSize="20sp"
+            android:layout_margin="20dp"
+            android:textColor="#4CAF50"/>
+
+        <TextView
+            android:id="@+id/Owe"
+            android:layout_width="match_parent"
+            android:layout_margin="20dp"
+            android:layout_weight="0.45"
+            android:layout_height="wrap_content"
+            android:text="@string/the_total_owed_money"
+            android:textSize="20sp"
+            android:textColor="#E91E63"/>
+    </LinearLayout>
 
 </LinearLayout>

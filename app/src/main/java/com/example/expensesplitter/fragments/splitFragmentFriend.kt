@@ -28,19 +28,18 @@ class splitFragmentFriend : Fragment() {
 
         binding = FragmentSplitFriendBinding.inflate(layoutInflater)
 
-        binding?.llAddfrndFirst?.visibility=View.VISIBLE
+        FirestoreClass().getFriendsFrag(this)
+
         binding?.llAddfrndSecond?.visibility=View.GONE
 
         binding?.newFriendBtn?.setOnClickListener{
-            binding?.llAddfrndFirst?.visibility=View.GONE
             binding?.llAddfrndSecond?.visibility=View.VISIBLE
+            binding?.newFriendBtn?.visibility = View.GONE
         }
 
         binding?.btnNewFriendEmail?.setOnClickListener {
             addFriend()
         }
-
-        FirestoreClass().getFriendsFrag(this)
 
 
         return binding?.root

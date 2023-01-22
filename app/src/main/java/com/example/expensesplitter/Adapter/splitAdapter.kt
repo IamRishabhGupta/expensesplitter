@@ -3,8 +3,6 @@ package com.example.expensesplitter.Adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.expensesplitter.databinding.FriendRecycleviewItemBinding
-import com.example.expensesplitter.databinding.RecyclerviewItemBinding
 import com.example.expensesplitter.databinding.SplitItemBinding
 import com.example.expensesplitter.models.Expense
 import com.example.expensesplitter.models.money
@@ -36,5 +34,9 @@ class splitAdapter (
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+    fun setItems(List : ArrayList<money>){
+        this.list = List
     }
 }

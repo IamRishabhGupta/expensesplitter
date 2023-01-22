@@ -326,5 +326,16 @@ class FirestoreClass {
             }
     }
 
+    fun getName(activity: MainActivity){
+        var name:String=""
+        mFireStore.collection(Constants.USERS).document(getCurrentUserId()).get()
+            .addOnSuccessListener {
+                    doc->
+                name=doc.get("name").toString()
+                activity.setName(name)
+            }
+
+    }
+
 }
 

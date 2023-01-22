@@ -24,6 +24,7 @@ class MainActivity : BaseActivity() {
         setContentView(binding?.root)
 
         showLoading(this)
+        FirestoreClass().getName(this)
 
         FirestoreClass().getExpense(this)
 
@@ -75,10 +76,6 @@ class MainActivity : BaseActivity() {
 
                     builder.show()
 
-
-
-
-
                     true
                 }
 
@@ -86,10 +83,7 @@ class MainActivity : BaseActivity() {
                     true
                 }
             }
-
         }
-
-
     }
 
     fun getExpenseData(expensesList : ArrayList<Expense>,){
@@ -109,6 +103,9 @@ class MainActivity : BaseActivity() {
             .beginTransaction()
             .replace(R.id.fragment_container_view, home)
             .commit()
+    }
+    fun setName(name:String){
+        binding?.tvTitle?.text=name
     }
 
 }

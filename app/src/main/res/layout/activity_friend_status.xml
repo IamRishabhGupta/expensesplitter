@@ -14,15 +14,40 @@
         android:layout_height="wrap_content"
         android:text="Username"
         android:textSize="30sp"
+        android:gravity="center"
         android:textColor="@color/purple_200"
         android:layout_gravity="center"
         android:layout_margin="20dp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
+    <TextView
+        android:id="@+id/TitleReq"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"/>
+        android:text="All Request"
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        android:textColor="#4CAF50"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvReq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:id="@+id/TitleOwe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total Dues Expenses"
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        android:textColor="#FF80AB"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvOwe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,18 +60,18 @@
             android:layout_height="wrap_content"
             android:text="Total Requested Money - 0.0"
             android:textSize="20sp"
-            android:layout_margin="20dp"
-            android:textColor="#4CAF50"/>
+            android:layout_margin="10dp"
+            android:textColor="#CCFF90"/>
 
         <TextView
             android:id="@+id/Owe"
             android:layout_width="match_parent"
-            android:layout_margin="20dp"
+            android:layout_margin="10dp"
             android:layout_weight="0.45"
             android:layout_height="wrap_content"
             android:text="Total Owed Money - 0.0"
             android:textSize="20sp"
-            android:textColor="#E91E63"/>
+            android:textColor="#FF80AB"/>
     </LinearLayout>
 
 </LinearLayout>

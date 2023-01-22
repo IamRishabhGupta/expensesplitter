@@ -37,7 +37,7 @@ class FriendStatusActivity : BaseActivity() {
         e("friendActivity me data" , ReqList.toString())
 
         adapter = splitAdapter(ReqList)
-        var rv = findViewById<RecyclerView>(R.id.rv)
+        var rv = findViewById<RecyclerView>(R.id.rvReq)
         rv.adapter = adapter
         rv.layoutManager = LinearLayoutManager((this))
 
@@ -48,11 +48,11 @@ class FriendStatusActivity : BaseActivity() {
     }
 
     fun gotTheListOwe(OweList : ArrayList<money>){
-        ReqmoneyList.addAll(OweList)
         e("log",OweList.toString())
-        var rv = findViewById<RecyclerView>(R.id.rv)
-        adapter.setItems(ReqmoneyList)
-        adapter.notifyDataSetChanged()
+        var rv = findViewById<RecyclerView>(R.id.rvOwe)
+        var adapter = splitAdapter(OweList)
+        rv.adapter = adapter
+        rv.layoutManager = LinearLayoutManager((this))
 
         for(i in OweList){
             totalOweMoney += i.amount

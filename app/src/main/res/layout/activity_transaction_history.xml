@@ -13,6 +13,7 @@
         android:background="@drawable/gradient"
         android:layout_height="55dp">
         <ImageView
+            android:id="@+id/iv_back"
             android:layout_margin="10dp"
             android:layout_weight="0.5"
             android:layout_width="0dp"

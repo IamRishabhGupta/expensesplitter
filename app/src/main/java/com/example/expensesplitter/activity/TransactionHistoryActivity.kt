@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log.e
 import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -49,7 +50,7 @@ class TransitionHistoryActivity : BaseActivity(){
                     i.value.get(2).toDouble()))
                 }
             }
-            e("kya hua hau","batao to sahi")
+            e("kya hua hau",moneydata.toString())
             FirestoreClass().addRequestMoney(moneydata)
             val rv = findViewById<RecyclerView>(R.id.rv_trans_history)
             rv.visibility = View.VISIBLE
@@ -122,6 +123,10 @@ class TransitionHistoryActivity : BaseActivity(){
         )
 
         FirestoreClass().getFriends(this)
+
+        findViewById<ImageView>(R.id.iv_back).setOnClickListener {
+            onBackPressed()
+        }
     }
 
     fun getExpenseListData(expenseList : ArrayList<Expense>){

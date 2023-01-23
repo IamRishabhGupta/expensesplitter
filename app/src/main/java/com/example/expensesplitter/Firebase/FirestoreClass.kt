@@ -124,15 +124,19 @@ class FirestoreClass {
                     e("friend nahi mila", friend.toString())
                     uid = friend.id
                 }
+                var check : Boolean = true
                 val friendHashMap = HashMap<String, Any>()
                 mFireStore.collection(Constants.USERS)
                     .document(getCurrentUserId()).get().addOnSuccessListener {
                         if (it.data?.isNotEmpty() == true) {
                             for (i in it.data!!.get("friends") as ArrayList<String>) {
                                     friendList.add(i)
+                                if(i == uid){
+                                    check = false
+                                }
                             }
                         }
-                        friendList.add(uid)
+                        if(check) friendList.add(uid)
                         e("3" , "ho gaya")
                         friendHashMap[Constants.FRIENDS] = friendList
                         mFireStore.collection(Constants.USERS).document(getCurrentUserId())
@@ -174,18 +178,17 @@ class FirestoreClass {
                             }
                         }
                     }
-                }
-                when(activity){
-                    is TransitionHistoryActivity ->{
-                        activity.getFriendsName(friendName)
-                    }
-                    is splitActivity ->{
+                    when(activity){
+                        is TransitionHistoryActivity ->{
+                            activity.getFriendsName(friendName)
+                        }
+                        is splitActivity ->{
 
+                        }
                     }
                 }
-                }.addOnFailureListener {
 
-            }
+                }
     }
 
 
@@ -213,15 +216,9 @@ class FirestoreClass {
                             }
                         }
                     }
+                    frag.getFriendsName(friendName)
                 }
-                when(frag){
-                    is splitFragmentFriend ->{
-                        frag.getFriendsName(friendName)
-                    }
                 }
-            }.addOnFailureListener {
-
-            }
     }
 
     fun addRequestMoney(moneyData: ArrayList<money>){
@@ -229,12 +226,13 @@ class FirestoreClass {
         mFireStore.collection(Constants.SPLIT).document(getCurrentUserId())
             .get().addOnSuccessListener {doc ->
 
-                if(doc.data != null){
+                if(doc.get(Constants.REQ) != null){
                     for(num in doc.get(Constants.REQ) as ArrayList<HashMap<String,Any>>){
 
                         var mon= money(num.get("uuid").toString(),num.get("name").toString(),
                             num.get("title").toString(),num.get("amount").toString().toDouble()
                         )
+                        e("mon",mon.toString())
                         moneyData.add(mon)
                     }
 
@@ -244,7 +242,7 @@ class FirestoreClass {
 
         request[Constants.REQ] = moneyData
         mFireStore.collection(Constants.SPLIT).document(getCurrentUserId())
-            .set(request, SetOptions.merge()).addOnSuccessListener {
+            .set(request).addOnSuccessListener {
                 e("Added in firestore",request.toString())
             }.addOnFailureListener {
 
@@ -252,34 +250,65 @@ class FirestoreClass {
 
 
         request[Constants.REQ] = ArrayList<money>()
+        e("size of money data " , moneyData.size.toString())
         for(i in moneyData){
             var data : ArrayList<money> = ArrayList()
+
             mFireStore.collection(Constants.SPLIT).document(i.uuid.toString()).get()
                 .addOnSuccessListener {doc ->
-                    if(doc.data != null){
+                    if(doc.get(Constants.OWD) != null){
                         for(num in doc.get(Constants.OWD) as ArrayList<HashMap<String,Any>>){
 
-                            if (i.uuid == num.get("uuid")){
+//                            if (i.uuid == num.get("uuid")){
                                 var mon= money(num.get("uuid").toString(),num.get("name").toString(),
                                     num.get("title").toString(),num.get("amount").toString().toDouble()
                                 )
                                 data.add(mon)
-                            }
+//                            }
                         }
 
-                        e("request",moneyData.toString())
+
+                    }
+                    data.add(money(i.uuid,i.name,i.title,i.amount))
+
+//                    request[Constants.OWD] = moneyData
+                    addOweData(data , i.uuid.toString())
+
+                }.addOnFailureListener {  }
+
+
+
+        }
+    }
+
+    fun addOweData(OweData : ArrayList<money> , id : String){
+        var ReqData : ArrayList<money> = ArrayList()
+        e("final owed data list",OweData.toString())
+        mFireStore.collection(Constants.SPLIT).document(id).get()
+            .addOnSuccessListener { doc ->
+                if (doc.get(Constants.REQ) != null){
+                    for (num in doc.get(Constants.REQ) as ArrayList<HashMap<String,Any>>){
+                        var mon= money(num.get("uuid").toString(),num.get("name").toString(),
+                            num.get("title").toString(),num.get("amount").toString().toDouble()
+                        )
+                        ReqData.add(mon)
                     }
                 }
-            data.add(money(i.uuid,i.name,i.title,i.amount))
+//                request[Constants.REQ] = moneyData
+                updateAll(OweData , ReqData , id)
+            }.addOnFailureListener {  }
+    }
 
-            request[Constants.OWD] = moneyData
-
-            mFireStore.collection(Constants.SPLIT).document(i.uuid.toString())
-                .set(request, SetOptions.merge()).addOnSuccessListener {
-                    e("Added in firestore",request.toString())
-                }.addOnFailureListener {
-                }
-        }
+    fun updateAll(OweData : ArrayList<money> , ReqData : ArrayList<money> , id : String){
+        var request : HashMap<String,Any> = HashMap()
+        request[Constants.REQ] = ReqData
+        request[Constants.OWD] = OweData
+        e("Final Data To Update" , request.toString())
+        mFireStore.collection(Constants.SPLIT).document(id)
+            .set(request).addOnSuccessListener {
+                e("Added in firestore - Owe Data list in All",request.toString())
+            }.addOnFailureListener {
+            }
     }
 
     fun getRequestMoneyDataReq(activity: FriendStatusActivity, id: String){
@@ -306,7 +335,7 @@ class FirestoreClass {
         var Owedata : ArrayList<money> = ArrayList()
         mFireStore.collection(Constants.SPLIT).document(id)
             .get().addOnSuccessListener {doc ->
-                if(doc.data != null){
+                if(doc.get(Constants.OWD) != null){
                     for(num in doc.get(Constants.OWD) as ArrayList<HashMap<String,Any>>){
 
                         var mon= money(
@@ -320,6 +349,17 @@ class FirestoreClass {
                     activity.gotTheListOwe(Owedata)
                 }
             }
+    }
+
+    fun getName(activity: MainActivity){
+        var name:String=""
+        mFireStore.collection(Constants.USERS).document(getCurrentUserId()).get()
+            .addOnSuccessListener {
+                    doc->
+                name=doc.get("name").toString()
+                activity.setName(name)
+            }
+
     }
 
 }
